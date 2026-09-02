@@ -3,6 +3,7 @@ BodyShody is a multi-page AI-powered fitness and nutrition companion — a singl
 
 It's built as a clean, card-based dashboard (Overview, Fuel, Move, Progress, Insights, Goals, Settings) sitting on top of the Google Gemini API for two things that used to feel like "someday" features: a voice call with an AI coach, and a camera that can estimate a meal's macros from a photo.
 
+# Live Link: https://body-shody-4ywq.vercel.app/
 # Images 
 
 Landing Page
