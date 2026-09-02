@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      var t = localStorage.getItem('bodyshody_theme') || 'system';
+      var isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BodyShody - Overview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F4F6F9; }
+      /* ===== Dark theme overrides ===== */
+    html.dark body { background-color: #0B1120 !important; color: #E2E8F0; }
+    html.dark .bg-white { background-color: #161F2E !important; }
+    html.dark .bg-slate-50 { background-color: #1E293B !important; }
+    html.dark .bg-slate-50\/60 { background-color: rgba(30,41,59,0.6) !important; }
+    html.dark .bg-slate-50\/70 { background-color: rgba(30,41,59,0.7) !important; }
+    html.dark .bg-slate-50\/80 { background-color: rgba(30,41,59,0.8) !important; }
+    html.dark .bg-slate-100 { background-color: #273449 !important; }
+    html.dark .bg-slate-200 { background-color: #334155 !important; }
+    html.dark .border-slate-100 { border-color: #24314A !important; }
+    html.dark .border-slate-200 { border-color: #334155 !important; }
+    html.dark .text-slate-900 { color: #F1F5F9 !important; }
+    html.dark .text-slate-800 { color: #E2E8F0 !important; }
+    html.dark .text-slate-700 { color: #CBD5E1 !important; }
+    html.dark .text-slate-600 { color: #A8B6C9 !important; }
+    html.dark .text-slate-500 { color: #94A3B8 !important; }
+    html.dark .text-slate-400 { color: #64748B !important; }
+    html.dark .text-slate-300 { color: #475569 !important; }
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #24314A !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #1E293B !important; color: #E2E8F0 !important; border-color: #334155 !important; }
+    html.dark ::placeholder { color: #64748B !important; }
+    html.dark .shadow-sm, html.dark .shadow-md, html.dark .shadow-lg { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+</style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen p-4 lg:p-6">
+
+  <div class="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-6">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-sm border border-slate-100 shrink-0">
+      <div class="space-y-8">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-slate-200 bg-white overflow-hidden">
+            <img src="assets/bodyshody-logo.png" alt="BodyShody logo" class="w-full h-full object-contain p-0.5">
+          </div>
+          <span class="text-2xl font-extrabold text-slate-900 tracking-tight">BodyShody</span>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="overview.html" class="flex items-center gap-3.5 px-4 py-3 bg-[#FFF2E9] text-[#FF6B2C] font-bold rounded-2xl transition text-sm">
+            <svg class="w-5 h-5 text-[#FF6B2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Overview
+          </a>
+          <a href="fuel.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+            Fuel (Meals)
+          </a>
+          <a href="move.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Move (Workouts)
+          </a>
+          <a href="fitgemini.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 15l.9 2.6L22 18l-2.1.9-.9 2.6-.9-2.6L16 18l2.1-.4z"/>
+            </svg>
+            FitGemini
+          </a>
+          <a href="progress.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            Progress
+          </a>
+          <a href="insights.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-4a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            Insights
+          </a>
+          <a href="goals.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Goals
+          </a>
+          <a href="settings.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Settings
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-3">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Athlete Profile" class="w-11 h-11 rounded-full object-cover border border-slate-200">
+        <div>
+          <p class="text-xs font-bold text-slate-900">Happy to see you, Athlete!</p>
+          <p class="text-xs font-medium text-slate-500 mt-0.5">🔥 Keep crushing it!</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT AREA ================= -->
+    <main class="flex-1 flex flex-col gap-6">
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Overview</h1>
+          <p class="text-sm font-medium text-slate-500 mt-0.5">Everything about today, at a glance.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="flex items-center bg-white px-4 py-2 rounded-2xl border border-slate-200 shadow-sm text-sm font-semibold text-slate-700 gap-4">
+            <button class="text-slate-400 hover:text-slate-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
+            <span>August 2, 2026</span>
+            <button class="text-slate-400 hover:text-slate-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <button class="bg-white p-2.5 rounded-2xl border border-slate-200 shadow-sm text-slate-600 hover:text-slate-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Calories & Macros + Workout Summary -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-extrabold text-slate-900">Calories & Macros</h2>
+            <a href="fuel.html" class="text-slate-300 hover:text-slate-500">•••</a>
+          </div>
+          <div class="flex items-center gap-6">
+            <div class="relative w-32 h-32 shrink-0 flex items-center justify-center">
+              <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="48" stroke="#F1F5F9" stroke-width="12" fill="transparent" />
+                <circle cx="60" cy="60" r="48" stroke="#F43F5E" stroke-width="12" fill="transparent" stroke-dasharray="301.59" stroke-dashoffset="100" stroke-linecap="round"/>
+                <circle cx="60" cy="60" r="48" stroke="#3B82F6" stroke-width="12" fill="transparent" stroke-dasharray="301.59" stroke-dashoffset="180" stroke-linecap="round"/>
+                <circle cx="60" cy="60" r="48" stroke="#22C55E" stroke-width="12" fill="transparent" stroke-dasharray="301.59" stroke-dashoffset="240" stroke-linecap="round"/>
+              </svg>
+              <div class="absolute text-center">
+                <p class="text-2xl font-extrabold text-slate-900 leading-none">1,842</p>
+                <p class="text-[10px] font-semibold text-slate-400 mt-1">of 2,200 kcal</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-x-6 gap-y-3 flex-1 text-xs">
+              <div><p class="font-bold text-slate-500">Calories</p><p class="text-sm font-extrabold text-slate-900">1,842 <span class="font-medium text-slate-400">kcal</span></p><p class="text-[11px] font-semibold text-slate-400">84% of goal</p></div>
+              <div><p class="font-bold text-slate-500">Protein</p><p class="text-sm font-extrabold text-slate-900">112 <span class="font-medium text-slate-400">g</span></p><p class="text-[11px] font-semibold text-slate-400">101% of goal</p></div>
+              <div><p class="font-bold text-slate-500">Carbs</p><p class="text-sm font-extrabold text-slate-900">207 <span class="font-medium text-slate-400">g</span></p><p class="text-[11px] font-semibold text-slate-400">78% of goal</p></div>
+              <div><p class="font-bold text-slate-500">Fat</p><p class="text-sm font-extrabold text-slate-900">63 <span class="font-medium text-slate-400">g</span></p><p class="text-[11px] font-semibold text-slate-400">72% of goal</p></div>
+            </div>
+          </div>
+          <h3 class="text-xs font-extrabold text-slate-700 pt-1 flex items-center justify-between">
+            Today's Meals
+            <a href="fuel.html?openMeal=1" class="bg-[#FF6B2C] hover:bg-[#E85A1C] text-white px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1 shadow-sm shadow-orange-200 transition">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              Add Meal
+            </a>
+          </h3>
+          <div class="space-y-2">
+            <a href="fuel.html" class="flex items-center justify-between p-3 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3"><span class="text-base">☀️</span><div><p class="text-xs font-extrabold text-slate-900">Breakfast</p><p class="text-[11px] font-medium text-slate-500">Oatmeal with Berries & Nuts</p></div></div>
+              <span class="text-xs font-extrabold text-slate-900">420 kcal</span>
+            </a>
+            <a href="fuel.html" class="flex items-center justify-between p-3 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3"><span class="text-base">🔆</span><div><p class="text-xs font-extrabold text-slate-900">Lunch</p><p class="text-[11px] font-medium text-slate-500">Grilled Chicken, Rice, Broccoli</p></div></div>
+              <span class="text-xs font-extrabold text-slate-900">620 kcal</span>
+            </a>
+            <a href="fuel.html" class="flex items-center justify-between p-3 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3"><span class="text-base">🌙</span><div><p class="text-xs font-extrabold text-slate-900">Dinner</p><p class="text-[11px] font-medium text-slate-500">Salmon, Quinoa, Mixed Veggies</p></div></div>
+              <span class="text-xs font-extrabold text-slate-900">560 kcal</span>
+            </a>
+            <a href="fuel.html" class="flex items-center justify-between p-3 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3"><span class="text-base">🍎</span><div><p class="text-xs font-extrabold text-slate-900">Snacks</p><p class="text-[11px] font-medium text-slate-500">Greek Yogurt with Honey</p></div></div>
+              <span class="text-xs font-extrabold text-slate-900">242 kcal</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-extrabold text-slate-900">Workout Summary</h2>
+            <a href="move.html" class="text-slate-300 hover:text-slate-500">•••</a>
+          </div>
+          <div class="grid grid-cols-4 gap-3 text-center">
+            <div class="bg-slate-50/70 rounded-2xl py-3"><p class="text-lg font-extrabold text-slate-900">6</p><p class="text-[10px] font-bold text-slate-500 mt-0.5">Exercises</p></div>
+            <div class="bg-slate-50/70 rounded-2xl py-3"><p class="text-lg font-extrabold text-slate-900">18</p><p class="text-[10px] font-bold text-slate-500 mt-0.5">Sets</p></div>
+            <div class="bg-slate-50/70 rounded-2xl py-3"><p class="text-lg font-extrabold text-slate-900">7,650</p><p class="text-[10px] font-bold text-slate-500 mt-0.5">Volume (kg)</p></div>
+            <div class="bg-slate-50/70 rounded-2xl py-3"><p class="text-lg font-extrabold text-slate-900">512</p><p class="text-[10px] font-bold text-slate-500 mt-0.5">Kcal Burned</p></div>
+          </div>
+          <h3 class="text-xs font-extrabold text-slate-700 pt-1">Today's Workout</h3>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 bg-slate-50/70 rounded-2xl border border-slate-100">
+              <div class="flex items-center gap-3"><span class="w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-[10px]">✓</span><p class="text-xs font-extrabold text-slate-900">Bench Press</p></div>
+              <span class="text-[11px] font-semibold text-slate-500">4 sets · 90 kg</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50/70 rounded-2xl border border-slate-100">
+              <div class="flex items-center gap-3"><span class="w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-[10px]">✓</span><p class="text-xs font-extrabold text-slate-900">Incline Dumbbell Press</p></div>
+              <span class="text-[11px] font-semibold text-slate-500">4 sets · 27.5 kg</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50/70 rounded-2xl border border-slate-100">
+              <div class="flex items-center gap-3"><span class="w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-[10px]">✓</span><p class="text-xs font-extrabold text-slate-900">Shoulder Press</p></div>
+              <span class="text-[11px] font-semibold text-slate-500">3 sets · 45 kg</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meal Distribution + Daily Steps/Active Minutes + AI Coach Card -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <h2 class="text-base font-extrabold text-slate-900">Meal Distribution</h2>
+          <div class="flex items-end justify-between gap-3 h-32 pt-2">
+            <div class="flex-1 flex flex-col items-center gap-2">
+              <span class="text-[11px] font-extrabold text-slate-700">25%</span>
+              <div class="w-full bg-rose-200 rounded-t-lg" style="height:60%"></div>
+              <span class="text-[10px] font-bold text-slate-500">Breakfast</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-2">
+              <span class="text-[11px] font-extrabold text-slate-700">34%</span>
+              <div class="w-full bg-rose-300 rounded-t-lg" style="height:85%"></div>
+              <span class="text-[10px] font-bold text-slate-500">Lunch</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-2">
+              <span class="text-[11px] font-extrabold text-slate-700">30%</span>
+              <div class="w-full bg-rose-300 rounded-t-lg" style="height:75%"></div>
+              <span class="text-[10px] font-bold text-slate-500">Dinner</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-2">
+              <span class="text-[11px] font-extrabold text-slate-700">11%</span>
+              <div class="w-full bg-rose-200 rounded-t-lg" style="height:30%"></div>
+              <span class="text-[10px] font-bold text-slate-500">Snacks</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-2">
+            <h2 class="text-base font-extrabold text-slate-900">Daily Steps</h2>
+            <div class="flex items-end justify-between">
+              <p class="text-3xl font-extrabold text-slate-900">8,746</p>
+              <p class="text-xs font-bold text-emerald-500">Goal: 10,000 · 87%</p>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full rounded-full" style="width:87%"></div></div>
+          </div>
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-2">
+            <h2 class="text-base font-extrabold text-slate-900">Active Minutes</h2>
+            <div class="flex items-end justify-between">
+              <p class="text-3xl font-extrabold text-slate-900">64</p>
+              <p class="text-xs font-bold text-blue-500">Goal: 60 min · 107%</p>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-blue-500 h-full rounded-full" style="width:100%"></div></div>
+          </div>
+        </div>
+
+        <!-- AI Coach Insight -->
+        <a href="fitgemini.html" class="rounded-3xl p-6 flex flex-col justify-between text-white shadow-sm relative overflow-hidden" style="background:linear-gradient(135deg,#4F46E5,#DB2777,#F97316);">
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-bold bg-white/15 backdrop-blur px-2.5 py-1 rounded-full w-fit">
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z"/></svg>
+            Coach Insight
+          </span>
+          <div class="mt-4">
+            <h3 class="text-2xl font-extrabold tracking-tight">Great Job!</h3>
+            <p class="text-xs font-semibold mt-2 leading-relaxed opacity-95">You've hit 84% of your calorie goal and crushed your workout today. Keep fueling your body and stay consistent to reach your goals!</p>
+          </div>
+          <div class="w-full bg-white/25 h-1.5 rounded-full mt-4 overflow-hidden"><div class="bg-white h-full rounded-full" style="width:84%"></div></div>
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+<script>
+  (function(){
+    var saved = localStorage.getItem('bodyshody_avatar');
+    if (saved) {
+      var img = document.querySelector('aside img[alt="Athlete Profile"]');
+      if (img) img.src = saved;
+    }
+  })();
+</script>
+</body>
+</html>

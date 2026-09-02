@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      var t = localStorage.getItem('bodyshody_theme') || 'system';
+      var isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BodyShody - Move (Workouts)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F4F6F9;
+    }
+      /* ===== Dark theme overrides ===== */
+    html.dark body { background-color: #0B1120 !important; color: #E2E8F0; }
+    html.dark .bg-white { background-color: #161F2E !important; }
+    html.dark .bg-slate-50 { background-color: #1E293B !important; }
+    html.dark .bg-slate-50\/60 { background-color: rgba(30,41,59,0.6) !important; }
+    html.dark .bg-slate-50\/70 { background-color: rgba(30,41,59,0.7) !important; }
+    html.dark .bg-slate-50\/80 { background-color: rgba(30,41,59,0.8) !important; }
+    html.dark .bg-slate-100 { background-color: #273449 !important; }
+    html.dark .bg-slate-200 { background-color: #334155 !important; }
+    html.dark .border-slate-100 { border-color: #24314A !important; }
+    html.dark .border-slate-200 { border-color: #334155 !important; }
+    html.dark .text-slate-900 { color: #F1F5F9 !important; }
+    html.dark .text-slate-800 { color: #E2E8F0 !important; }
+    html.dark .text-slate-700 { color: #CBD5E1 !important; }
+    html.dark .text-slate-600 { color: #A8B6C9 !important; }
+    html.dark .text-slate-500 { color: #94A3B8 !important; }
+    html.dark .text-slate-400 { color: #64748B !important; }
+    html.dark .text-slate-300 { color: #475569 !important; }
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #24314A !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #1E293B !important; color: #E2E8F0 !important; border-color: #334155 !important; }
+    html.dark ::placeholder { color: #64748B !important; }
+    html.dark .shadow-sm, html.dark .shadow-md, html.dark .shadow-lg { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+</style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen p-4 lg:p-6">
+
+  <div class="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-6">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-sm border border-slate-100 shrink-0">
+      <div class="space-y-8">
+        
+        <!-- Brand Logo -->
+        <a href="overview.html" class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-slate-200 bg-white overflow-hidden">
+            <img src="assets/bodyshody-logo.png" alt="BodyShody logo" class="w-full h-full object-contain p-0.5">
+          </div>
+          <span class="text-2xl font-extrabold text-slate-900 tracking-tight">BodyShody</span>
+        </a>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-2">
+          <!-- Overview -->
+          <a href="overview.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Overview
+          </a>
+
+          <!-- Fuel (Meals) -->
+          <a href="fuel.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+            </svg>
+            Fuel (Meals)
+          </a>
+
+          <!-- Move (Workouts) - ACTIVE -->
+          <a href="move.html" class="flex items-center gap-3.5 px-4 py-3 bg-[#FFF2E9] text-[#FF6B2C] font-bold rounded-2xl transition text-sm">
+            <svg class="w-5 h-5 text-[#FF6B2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Move (Workouts)
+          </a>
+
+          <!-- FitGemini -->
+          <a href="fitgemini.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+            FitGemini
+          </a>
+
+          <!-- Progress -->
+          <a href="progress.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+            Progress
+          </a>
+
+          <!-- Insights -->
+          <a href="insights.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-4a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+            Insights
+          </a>
+
+          <!-- Goals -->
+          <a href="goals.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Goals
+          </a>
+
+          <!-- Settings -->
+          <a href="settings.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Settings
+          </a>
+        </nav>
+      </div>
+
+      <!-- User Profile Box -->
+      <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-3">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Athlete Profile" class="w-11 h-11 rounded-full object-cover border border-slate-200">
+        <div>
+          <p class="text-xs font-bold text-slate-900">Keep pushing! 🔥</p>
+          <p class="text-xs font-medium text-slate-500 mt-0.5">You've got this.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT AREA ================= -->
+    <main class="flex-1 flex flex-col gap-6">
+
+      <!-- Header Section -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Move (Workouts)</h1>
+          <p class="text-sm font-medium text-slate-500 mt-0.5">Track your workouts. Build strength. Stay consistent.</p>
+        </div>
+
+        <!-- Date Selector -->
+        <div class="flex items-center gap-2">
+          <div class="flex items-center bg-white px-4 py-2 rounded-2xl border border-slate-200 shadow-sm text-sm font-semibold text-slate-700 gap-4">
+            <button class="text-slate-400 hover:text-slate-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <span>August 2, 2026</span>
+            <button class="text-slate-400 hover:text-slate-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <button class="bg-white p-2.5 rounded-2xl border border-slate-200 shadow-sm text-slate-600 hover:text-slate-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Top Row: 4 Metric Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Workouts Card -->
+        <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-emerald-50 text-emerald-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <span class="text-xs font-bold text-slate-600">Workouts</span>
+          </div>
+          <div>
+            <span class="text-3xl font-extrabold text-slate-900">1</span>
+            <p class="text-xs font-semibold text-slate-400 mt-1">Today</p>
+          </div>
+          <div>
+            <span class="inline-flex items-center gap-1 text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
+              🔥 Great job!
+            </span>
+          </div>
+        </div>
+
+        <!-- Active Time Card -->
+        <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="text-xs font-bold text-slate-600">Active Time</span>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-extrabold text-slate-900">48</span>
+              <span class="text-xs font-bold text-slate-500">min</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-400 mt-1">Goal: 60 min</p>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+            <div class="bg-blue-500 h-full rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+
+        <!-- Calories Burned Card -->
+        <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+            </div>
+            <span class="text-xs font-bold text-slate-600">Calories Burned</span>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-extrabold text-slate-900">512</span>
+              <span class="text-xs font-bold text-slate-500">kcal</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-400 mt-1">Goal: 600 kcal</p>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+            <div class="bg-orange-500 h-full rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+
+        <!-- Total Volume Card -->
+        <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-purple-50 text-purple-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            </div>
+            <span class="text-xs font-bold text-slate-600">Total Volume</span>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1">
+              <span id="topVolume" class="text-3xl font-extrabold text-slate-900">7,650</span>
+              <span class="text-xs font-bold text-slate-500">kg</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-400 mt-1">Today</p>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+            <div id="topVolumeBar" class="bg-purple-500 h-full rounded-full" style="width: 70%"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Main Columns Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column (7 cols): Today's Workout & Recent Workouts -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+
+          <!-- Today's Workout Card -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-6">
+            
+            <!-- Card Title Bar -->
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-extrabold text-slate-900 tracking-tight">Today's Workout</h2>
+              <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded-full">Completed</span>
+            </div>
+
+            <!-- Workout Heading Sub-Box -->
+            <div class="flex items-center justify-between pb-2">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 shrink-0">
+                  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 10C6 10 7.5 7 12 7C16.5 7 18 10 18 10M5 14H19M7 18H17" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <h3 class="text-base font-extrabold text-slate-900">Push Day</h3>
+                  <p class="text-xs font-medium text-slate-500">Chest, Shoulders, Triceps</p>
+                  <p class="text-[11px] font-semibold text-slate-400 mt-0.5">6:30 PM – 7:18 PM</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-bold text-slate-700">48 min</span>
+                <button class="text-slate-300 hover:text-slate-600">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Exercises Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="text-slate-400 border-b border-slate-100 font-semibold">
+                    <th class="pb-3 font-medium"></th>
+                    <th class="pb-3 text-center font-medium">Sets</th>
+                    <th class="pb-3 text-center font-medium">Reps</th>
+                    <th class="pb-3 text-center font-medium">Weight</th>
+                    <th class="pb-3 font-medium"></th>
+                  </tr>
+                </thead>
+                <tbody id="exerciseTableBody" class="divide-y divide-slate-50 font-semibold text-slate-700">
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Add Exercise Button -->
+            <button onclick="openExerciseModal()" class="w-full py-2.5 text-xs font-extrabold text-[#FF6B2C] hover:bg-orange-50/50 rounded-2xl flex items-center justify-center gap-1.5 transition">
+              <span class="text-sm">+</span> Add Exercise
+            </button>
+
+          </div>
+
+          <!-- Recent Workouts Card -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h2 class="text-base font-extrabold text-slate-900">Recent Workouts</h2>
+              <a href="#" class="text-xs font-bold text-blue-600 hover:underline">View All</a>
+            </div>
+
+            <div class="space-y-3">
+              <!-- Item 1 -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/60 hover:bg-slate-50 rounded-2xl border border-slate-100/80 transition">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 bg-emerald-100/70 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">
+                    ✓
+                  </div>
+                  <div>
+                    <h3 class="font-extrabold text-slate-900 text-sm">Pull Day</h3>
+                    <p class="text-xs font-medium text-slate-400">Back, Biceps</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-6">
+                  <span class="text-xs font-semibold text-slate-500">Aug 01, 2026</span>
+                  <span class="text-xs font-bold text-slate-800">52 min</span>
+                  <span class="text-xs font-bold text-slate-800">612 kcal</span>
+                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="flex items-center justify-between p-3.5 bg-slate-50/60 hover:bg-slate-50 rounded-2xl border border-slate-100/80 transition">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 bg-emerald-100/70 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">
+                    ✓
+                  </div>
+                  <div>
+                    <h3 class="font-extrabold text-slate-900 text-sm">Leg Day</h3>
+                    <p class="text-xs font-medium text-slate-400">Legs, Calves</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-6">
+                  <span class="text-xs font-semibold text-slate-500">Jul 30, 2026</span>
+                  <span class="text-xs font-bold text-slate-800">65 min</span>
+                  <span class="text-xs font-bold text-slate-800">701 kcal</span>
+                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Column (5 cols): Workout Summary & Muscle Focus -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+
+          <!-- Workout Summary Card -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h2 class="text-base font-extrabold text-slate-900">Workout Summary</h2>
+              <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+
+            <div class="space-y-3.5 pt-1">
+              <!-- Exercises -->
+              <div class="flex items-center justify-between text-xs">
+                <span class="flex items-center gap-2.5 font-bold text-slate-600">
+                  <span class="w-7 h-7 bg-blue-50 text-blue-500 rounded-lg flex items-center justify-center">≡</span>
+                  Exercises
+                </span>
+                <span class="font-extrabold text-slate-900 text-sm" id="summaryExercises">6</span>
+              </div>
+
+              <!-- Sets -->
+              <div class="flex items-center justify-between text-xs">
+                <span class="flex items-center gap-2.5 font-bold text-slate-600">
+                  <span class="w-7 h-7 bg-emerald-50 text-emerald-500 rounded-lg flex items-center justify-center">⊞</span>
+                  Sets
+                </span>
+                <span class="font-extrabold text-slate-900 text-sm" id="summarySets">18</span>
+              </div>
+
+              <!-- Reps -->
+              <div class="flex items-center justify-between text-xs">
+                <span class="flex items-center gap-2.5 font-bold text-slate-600">
+                  <span class="w-7 h-7 bg-amber-50 text-amber-500 rounded-lg flex items-center justify-center">🔄</span>
+                  Reps
+                </span>
+                <span class="font-extrabold text-slate-900 text-sm" id="summaryReps">178</span>
+              </div>
+
+              <!-- Volume -->
+              <div class="flex items-center justify-between text-xs">
+                <span class="flex items-center gap-2.5 font-bold text-slate-600">
+                  <span class="w-7 h-7 bg-purple-50 text-purple-500 rounded-lg flex items-center justify-center">🏋️</span>
+                  Volume
+                </span>
+                <span class="font-extrabold text-slate-900 text-sm"><span id="summaryVolume">7,650</span> <span class="font-bold text-slate-500 text-xs">kg</span></span>
+              </div>
+
+              <!-- Calories Burned -->
+              <div class="flex items-center justify-between text-xs">
+                <span class="flex items-center gap-2.5 font-bold text-slate-600">
+                  <span class="w-7 h-7 bg-orange-50 text-orange-500 rounded-lg flex items-center justify-center">🔥</span>
+                  Calories Burned
+                </span>
+                <span class="font-extrabold text-slate-900 text-sm">512 <span class="font-bold text-slate-500 text-xs">kcal</span></span>
+              </div>
+
+              <!-- Avg. Heart Rate -->
+              <div class="flex items-center justify-between text-xs">
+                <span class="flex items-center gap-2.5 font-bold text-slate-600">
+                  <span class="w-7 h-7 bg-rose-50 text-rose-500 rounded-lg flex items-center justify-center">❤️</span>
+                  Avg. Heart Rate
+                </span>
+                <span class="font-extrabold text-slate-900 text-sm">128 <span class="font-bold text-slate-500 text-xs">bpm</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Muscle Focus Card -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+            <h2 class="text-base font-extrabold text-slate-900">Muscle Focus</h2>
+
+            <div class="flex items-center justify-between gap-4">
+              <!-- Body Anatomy Diagram (SVG) -->
+              <div class="w-48 h-56 relative shrink-0 flex items-center justify-center">
+                <svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-sm">
+                  <!-- Front Body Silhouette -->
+                  <g transform="translate(10, 10)">
+                    <circle cx="45" cy="18" r="10" fill="#CBD5E1"/>
+                    <path d="M41 28h8v8h-8z" fill="#CBD5E1"/>
+                    <path d="M26 38 Q45 36 64 38 L68 52 Q45 56 22 52 Z" fill="#EF4444"/>
+                    <path d="M34 40 Q45 38 56 40 L54 48 Q45 50 36 48 Z" fill="#22C55E"/>
+                    <path d="M18 42 Q25 40 25 60 L18 80 Q14 60 18 42 Z" fill="#F59E0B"/>
+                    <path d="M72 42 Q65 40 65 60 L72 80 Q76 60 72 42 Z" fill="#F59E0B"/>
+                    <path d="M34 54 H56 V88 H34 Z" fill="#3B82F6"/>
+                    <path d="M32 92 L26 180 H38 L43 92 Z" fill="#CBD5E1"/>
+                    <path d="M58 92 L64 180 H52 L47 92 Z" fill="#CBD5E1"/>
+                    <circle cx="32" cy="130" r="5" fill="#22C55E"/>
+                    <circle cx="58" cy="130" r="5" fill="#22C55E"/>
+                  </g>
+                  <g transform="translate(105, 10)">
+                    <circle cx="45" cy="18" r="10" fill="#CBD5E1"/>
+                    <path d="M41 28h8v8h-8z" fill="#CBD5E1"/>
+                    <path d="M24 38 Q45 36 66 38 L68 50 Q45 54 22 50 Z" fill="#EF4444"/>
+                    <path d="M18 42 Q25 40 25 62 L18 80 Q14 60 18 42 Z" fill="#F59E0B"/>
+                    <path d="M72 42 Q65 40 65 62 L72 80 Q76 60 72 42 Z" fill="#F59E0B"/>
+                    <path d="M30 50 Q45 48 60 50 L56 88 H34 Z" fill="#94A3B8"/>
+                    <path d="M30 90 Q45 88 60 90 L62 115 H28 Z" fill="#3B82F6"/>
+                    <path d="M31 118 L26 180 H38 L43 118 Z" fill="#CBD5E1"/>
+                    <path d="M59 118 L64 180 H52 L47 118 Z" fill="#CBD5E1"/>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Legend Side -->
+              <div class="space-y-3 flex-1 text-xs">
+                <div class="flex items-start gap-2.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500 mt-1 shrink-0"></span>
+                  <div>
+                    <p class="font-extrabold text-slate-900">Primary</p>
+                    <p class="text-[11px] font-medium text-slate-500">Chest, Shoulders</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500 mt-1 shrink-0"></span>
+                  <div>
+                    <p class="font-extrabold text-slate-900">Secondary</p>
+                    <p class="text-[11px] font-medium text-slate-500">Triceps</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1 shrink-0"></span>
+                  <div>
+                    <p class="font-extrabold text-slate-900">Tertiary</p>
+                    <p class="text-[11px] font-medium text-slate-500">Upper Chest</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-blue-500 mt-1 shrink-0"></span>
+                  <div>
+                    <p class="font-extrabold text-slate-900">Stabilizers</p>
+                    <p class="text-[11px] font-medium text-slate-500">Core</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- View Analytics Button -->
+            <a href="insights.html" class="w-full py-2.5 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5 transition">
+              View Muscle Analytics <span class="text-slate-400">›</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Banner: Encouragement / Consistency -->
+      <div class="bg-[#ECF8F0] border border-[#D2F0DA] rounded-3xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-md shadow-emerald-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-slate-900 text-sm">Consistency is key!</h4>
+            <p class="text-xs font-semibold text-slate-600 mt-0.5">You've completed 3 workouts this week. Keep it up!</p>
+          </div>
+        </div>
+
+        <a href="progress.html" class="bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition">
+          View Progress
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ================= ADD EXERCISE MODAL ================= -->
+  <div id="exerciseModalBackdrop" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-md p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-extrabold text-slate-900">Add Exercise</h3>
+        <button onclick="closeExerciseModal()" class="text-slate-400 hover:text-slate-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Exercise Name</label>
+          <input id="exName" type="text" placeholder="e.g. Deadlift" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Equipment</label>
+          <select id="exEquipment" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+            <option value="Barbell">Barbell</option>
+            <option value="Dumbbell">Dumbbell</option>
+            <option value="Cable">Cable</option>
+            <option value="Machine">Machine</option>
+            <option value="Bodyweight">Bodyweight</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Number of Sets</label>
+          <input id="exSets" type="number" min="1" max="15" value="3" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Reps per Set</label>
+          <input id="exReps" type="text" placeholder="e.g. 10, 10, 8  or just 10 for all sets" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Weight per Set (kg) <span class="normal-case font-medium text-slate-300">leave blank for bodyweight</span></label>
+          <input id="exWeight" type="text" placeholder="e.g. 60, 65, 65  or just 60 for all sets" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+        </div>
+      </div>
+
+      <button onclick="submitExercise()" class="w-full bg-[#FF6B2C] hover:bg-[#E85A1C] text-white font-bold py-3 rounded-2xl text-xs shadow-md shadow-orange-200 transition">Add to Today's Workout</button>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const EQUIPMENT_ICON = {
+    Barbell: '🏋️', Dumbbell: '🏋️', Cable: '⚙️', Machine: '⚙️', Bodyweight: '🤸', Other: '💪'
+  };
+
+  const DEFAULT_EXERCISES = [
+    { id: 'e1', name: 'Bench Press', equipment: 'Barbell', reps: [8,8,6,6], weights: [80,85,90,90] },
+    { id: 'e2', name: 'Incline Dumbbell Press', equipment: 'Dumbbell', reps: [10,10,8,8], weights: [22.5,25,27.5,27.5] },
+    { id: 'e3', name: 'Shoulder Press', equipment: 'Barbell', reps: [10,8,8], weights: [40,45,45] },
+    { id: 'e4', name: 'Lateral Raises', equipment: 'Dumbbell', reps: [12,12,12], weights: [7.5,7.5,7.5] },
+    { id: 'e5', name: 'Tricep Pushdown', equipment: 'Cable', reps: [12,12,10], weights: [30,35,35] }
+  ];
+
+  function loadExercises() {
+    try {
+      const stored = localStorage.getItem('bodyshody_exercises');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
+    return DEFAULT_EXERCISES.slice();
+  }
+  function saveExercises(list) { localStorage.setItem('bodyshody_exercises', JSON.stringify(list)); }
+
+  let exercises = loadExercises();
+
+  function renderExercises() {
+    const tbody = document.getElementById('exerciseTableBody');
+    tbody.innerHTML = '';
+    exercises.forEach(ex => {
+      const icon = EQUIPMENT_ICON[ex.equipment] || '💪';
+      const weightsAllZero = ex.weights.every(w => !w);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="py-3.5 flex items-center gap-3">
+          <div class="w-8 h-8 bg-slate-50 rounded-xl flex items-center justify-center text-slate-600 shrink-0">${icon}</div>
+          <div>
+            <p class="font-extrabold text-slate-900">${ex.name}</p>
+            <p class="text-[11px] font-normal text-slate-400">${ex.equipment}</p>
+          </div>
+        </td>
+        <td class="py-3.5 text-center font-extrabold text-slate-900">${ex.reps.length}</td>
+        <td class="py-3.5 text-center text-slate-600">${ex.reps.join(', ')}</td>
+        <td class="py-3.5 text-center text-slate-600">${weightsAllZero ? 'Bodyweight' : ex.weights.join(', ') + ' kg'}</td>
+        <td class="py-3.5 text-right">
+          <div class="flex items-center justify-end gap-2">
+            <span class="w-5 h-5 bg-emerald-500 text-white rounded-full inline-flex items-center justify-center text-[10px]">✓</span>
+            <button onclick="removeExercise('${ex.id}')" class="text-slate-300 hover:text-rose-500">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function renderSummary() {
+    const totalExercises = exercises.length;
+    const totalSets = exercises.reduce((sum, ex) => sum + ex.reps.length, 0);
+    const totalReps = exercises.reduce((sum, ex) => sum + ex.reps.reduce((a,b) => a + Number(b || 0), 0), 0);
+    const totalVolume = exercises.reduce((sum, ex) => {
+      return sum + ex.reps.reduce((s, r, i) => s + (Number(r) || 0) * (Number(ex.weights[i]) || 0), 0);
+    }, 0);
+    const volumeRounded = Math.round(totalVolume).toLocaleString();
+
+    document.getElementById('summaryExercises').textContent = totalExercises;
+    document.getElementById('summarySets').textContent = totalSets;
+    document.getElementById('summaryReps').textContent = totalReps;
+    document.getElementById('summaryVolume').textContent = volumeRounded;
+    document.getElementById('topVolume').textContent = volumeRounded;
+
+    const volumeGoal = 8000; // soft visual benchmark for the progress bar
+    document.getElementById('topVolumeBar').style.width = Math.min(100, Math.round(totalVolume / volumeGoal * 100)) + '%';
+  }
+
+  window.removeExercise = function(id) {
+    exercises = exercises.filter(ex => ex.id !== id);
+    saveExercises(exercises);
+    renderExercises();
+    renderSummary();
+  };
+
+  window.openExerciseModal = function() {
+    document.getElementById('exerciseModalBackdrop').classList.remove('hidden');
+    document.getElementById('exerciseModalBackdrop').classList.add('flex');
+  };
+  window.closeExerciseModal = function() {
+    document.getElementById('exerciseModalBackdrop').classList.add('hidden');
+    document.getElementById('exerciseModalBackdrop').classList.remove('flex');
+    document.getElementById('exName').value = '';
+    document.getElementById('exSets').value = '3';
+    document.getElementById('exReps').value = '';
+    document.getElementById('exWeight').value = '';
+  };
+
+  function parsePerSet(input, sets) {
+    const parts = String(input).split(',').map(s => s.trim()).filter(s => s !== '');
+    if (parts.length === 0) return new Array(sets).fill(0);
+    if (parts.length === 1) return new Array(sets).fill(parseFloat(parts[0]) || 0);
+    const arr = parts.map(p => parseFloat(p) || 0);
+    while (arr.length < sets) arr.push(arr[arr.length - 1]);
+    return arr.slice(0, sets);
+  }
+
+  window.submitExercise = function() {
+    const name = document.getElementById('exName').value.trim();
+    const sets = Math.max(1, parseInt(document.getElementById('exSets').value, 10) || 1);
+    const repsInput = document.getElementById('exReps').value.trim();
+
+    if (!name || !repsInput) {
+      alert('Please add at least an exercise name and reps.');
+      return;
+    }
+
+    const exercise = {
+      id: 'e' + Date.now(),
+      name: name,
+      equipment: document.getElementById('exEquipment').value,
+      reps: parsePerSet(repsInput, sets),
+      weights: parsePerSet(document.getElementById('exWeight').value.trim(), sets)
+    };
+
+    exercises.push(exercise);
+    saveExercises(exercises);
+    renderExercises();
+    renderSummary();
+    closeExerciseModal();
+  };
+
+  renderExercises();
+  renderSummary();
+})();
+</script>
+
+<script>
+  (function(){
+    var saved = localStorage.getItem('bodyshody_avatar');
+    if (saved) {
+      var img = document.querySelector('aside img[alt="Athlete Profile"]');
+      if (img) img.src = saved;
+    }
+  })();
+</script>
+</body>
+</html>

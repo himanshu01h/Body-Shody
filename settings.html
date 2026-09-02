@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      var t = localStorage.getItem('bodyshody_theme') || 'system';
+      var isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BodyShody - Settings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F4F6F9; }
+      /* ===== Dark theme overrides ===== */
+    html.dark body { background-color: #0B1120 !important; color: #E2E8F0; }
+    html.dark .bg-white { background-color: #161F2E !important; }
+    html.dark .bg-slate-50 { background-color: #1E293B !important; }
+    html.dark .bg-slate-50\/60 { background-color: rgba(30,41,59,0.6) !important; }
+    html.dark .bg-slate-50\/70 { background-color: rgba(30,41,59,0.7) !important; }
+    html.dark .bg-slate-50\/80 { background-color: rgba(30,41,59,0.8) !important; }
+    html.dark .bg-slate-100 { background-color: #273449 !important; }
+    html.dark .bg-slate-200 { background-color: #334155 !important; }
+    html.dark .border-slate-100 { border-color: #24314A !important; }
+    html.dark .border-slate-200 { border-color: #334155 !important; }
+    html.dark .text-slate-900 { color: #F1F5F9 !important; }
+    html.dark .text-slate-800 { color: #E2E8F0 !important; }
+    html.dark .text-slate-700 { color: #CBD5E1 !important; }
+    html.dark .text-slate-600 { color: #A8B6C9 !important; }
+    html.dark .text-slate-500 { color: #94A3B8 !important; }
+    html.dark .text-slate-400 { color: #64748B !important; }
+    html.dark .text-slate-300 { color: #475569 !important; }
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #24314A !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #1E293B !important; color: #E2E8F0 !important; border-color: #334155 !important; }
+    html.dark ::placeholder { color: #64748B !important; }
+    html.dark .shadow-sm, html.dark .shadow-md, html.dark .shadow-lg { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+</style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen p-4 lg:p-6">
+
+  <div class="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-6">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-sm border border-slate-100 shrink-0">
+      <div class="space-y-8">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-slate-200 bg-white overflow-hidden">
+            <img src="assets/bodyshody-logo.png" alt="BodyShody logo" class="w-full h-full object-contain p-0.5">
+          </div>
+          <span class="text-2xl font-extrabold text-slate-900 tracking-tight">BodyShody</span>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="overview.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Overview
+          </a>
+          <a href="fuel.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+            Fuel (Meals)
+          </a>
+          <a href="move.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Move (Workouts)
+          </a>
+          <a href="fitgemini.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 15l.9 2.6L22 18l-2.1.9-.9 2.6-.9-2.6L16 18l2.1-.4z"/>
+            </svg>
+            FitGemini
+          </a>
+          <a href="progress.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            Progress
+          </a>
+          <a href="insights.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-4a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            Insights
+          </a>
+          <a href="goals.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Goals
+          </a>
+          <a href="settings.html" class="flex items-center gap-3.5 px-4 py-3 bg-[#FFF2E9] text-[#FF6B2C] font-bold rounded-2xl transition text-sm">
+            <svg class="w-5 h-5 text-[#FF6B2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Settings
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-3">
+        <img id="sidebarAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Athlete Profile" class="w-11 h-11 rounded-full object-cover border border-slate-200">
+        <div>
+          <p class="text-xs font-bold text-slate-900">Stay strong! 💪</p>
+          <p class="text-xs font-medium text-slate-400 mt-0.5">You've got this.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT AREA ================= -->
+    <main class="flex-1 flex flex-col gap-6">
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Settings</h1>
+          <p class="text-sm font-medium text-slate-500 mt-0.5">Manage your profile, preferences, and app experience.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-6">
+          <h2 class="text-base font-extrabold text-slate-900">Profile Settings</h2>
+          <div class="flex items-start gap-6">
+            <div class="relative shrink-0">
+              <img id="profileAvatarPreview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Profile Avatar" class="w-20 h-20 rounded-full object-cover border-2 border-slate-100">
+              <button type="button" onclick="document.getElementById('avatarFileInput').click()" class="absolute bottom-0 right-0 w-7 h-7 bg-white border border-slate-200 rounded-full flex items-center justify-center shadow-sm text-slate-600 hover:text-slate-900 transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </button>
+              <input id="avatarFileInput" type="file" accept="image/*" class="hidden">
+            </div>
+            <div class="flex-1 space-y-3.5">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Full Name</label>
+                <input type="text" value="Athlete" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-500">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Email</label>
+                <input type="email" value="athlete@gmail.com" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-500">
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Age</label>
+                  <input type="text" value="25" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Gender</label>
+                  <select class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-500">
+                    <option>Male</option><option>Female</option><option>Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="w-full bg-[#6A5AE0] hover:bg-[#5B4BD0] text-white font-bold py-3 rounded-2xl text-xs shadow-md shadow-indigo-100 transition">Save Changes</button>
+        </div>
+
+        <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+          <h2 class="text-base font-extrabold text-slate-900 mb-2">Preferences</h2>
+          <div class="divide-y divide-slate-100 text-xs">
+            <div class="py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-emerald-50 text-emerald-500 rounded-xl flex items-center justify-center shrink-0">🥗</div>
+                <span class="font-extrabold text-slate-900">Meal Preferences</span>
+              </div>
+              <span class="font-medium text-slate-500">Vegetarian • No Allergies</span>
+            </div>
+            <div class="py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-purple-50 text-purple-500 rounded-xl flex items-center justify-center shrink-0">🏋️</div>
+                <span class="font-extrabold text-slate-900">Fitness Goal</span>
+              </div>
+              <span class="font-medium text-slate-500">Muscle Gain</span>
+            </div>
+            <div class="py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center shrink-0">⚡</div>
+                <span class="font-extrabold text-slate-900">Activity Level</span>
+              </div>
+              <span class="font-medium text-slate-500">Moderately Active</span>
+            </div>
+            <div class="py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center shrink-0">🔥</div>
+                <span class="font-extrabold text-slate-900">Daily Calorie Goal</span>
+              </div>
+              <span class="font-medium text-slate-500">2,200 kcal</span>
+            </div>
+            <div class="py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center shrink-0">📋</div>
+                <span class="font-extrabold text-slate-900">Workout Split</span>
+              </div>
+              <span class="font-medium text-slate-500">Push / Pull / Legs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <h2 class="text-base font-extrabold text-slate-900">Notifications</h2>
+          <div class="space-y-3.5 text-xs">
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Meal Reminders</span><div class="w-9 h-5 bg-emerald-500 rounded-full p-0.5 flex items-center justify-end"><div class="w-4 h-4 bg-white rounded-full shadow"></div></div></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Workout Reminders</span><div class="w-9 h-5 bg-emerald-500 rounded-full p-0.5 flex items-center justify-end"><div class="w-4 h-4 bg-white rounded-full shadow"></div></div></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Daily Goals & Progress</span><div class="w-9 h-5 bg-emerald-500 rounded-full p-0.5 flex items-center justify-end"><div class="w-4 h-4 bg-white rounded-full shadow"></div></div></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Achievements</span><div class="w-9 h-5 bg-emerald-500 rounded-full p-0.5 flex items-center justify-end"><div class="w-4 h-4 bg-white rounded-full shadow"></div></div></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Tips & Recommendations</span><div class="w-9 h-5 bg-slate-200 rounded-full p-0.5 flex items-center justify-start"><div class="w-4 h-4 bg-white rounded-full shadow"></div></div></div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <h2 class="text-base font-extrabold text-slate-900">Units & Display</h2>
+          <div class="space-y-3.5 text-xs">
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Weight Unit</span><select class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold"><option>kg</option><option>lbs</option></select></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Height Unit</span><select class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold"><option>cm</option><option>ft</option></select></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Energy Unit</span><select class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold"><option>kcal</option><option>kJ</option></select></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Theme</span><select id="themeSelect" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold"><option>Light</option><option>Dark</option><option>System</option></select></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Language</span><select class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold"><option>English</option></select></div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <h2 class="text-base font-extrabold text-slate-900">Privacy & Data</h2>
+          <div class="space-y-3.5 text-xs">
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Data Privacy</span><span class="text-slate-400">›</span></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Export My Data</span><span class="text-slate-400">›</span></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Delete My Data</span><span class="text-slate-400">›</span></div>
+            <div class="flex items-center justify-between"><span class="font-extrabold text-slate-900">Data & Sync</span><span class="text-slate-400">›</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gemini API Key Config -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+        <div>
+          <h2 class="text-base font-extrabold text-slate-900">FitGemini API Key <span class="text-slate-400 font-semibold">(fallback)</span></h2>
+          <p class="text-xs font-medium text-slate-400 mt-0.5">If this app is deployed with a server-side <code class="bg-slate-100 px-1 rounded">GEMINI_API_KEY</code> (see the included README for Vercel setup), FitGemini works for everyone automatically and you can ignore this. Otherwise, paste a personal key below as a fallback — used only in this browser. Get one free at <a href="https://aistudio.google.com/apikey" target="_blank" class="text-blue-600 font-semibold">aistudio.google.com/apikey</a>.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input id="geminiKeyInput" type="password" placeholder="Paste your Gemini API key here" class="flex-1 bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-500">
+          <button onclick="saveGeminiKey()" class="bg-[#FF6B2C] hover:bg-[#E85A1C] text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-sm transition">Save Key</button>
+        </div>
+        <p id="keyStatus" class="text-[11px] font-semibold text-slate-400"></p>
+      </div>
+
+      <div class="bg-[#EFFDF4] border border-[#DCFCE7] rounded-3xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 bg-emerald-600 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-md shadow-emerald-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-slate-900 text-sm">Your privacy is important to us.</h4>
+            <p class="text-xs font-semibold text-slate-600 mt-0.5">Your Gemini key is stored only in this browser's local storage.</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    const keyInput = document.getElementById('geminiKeyInput');
+    const status = document.getElementById('keyStatus');
+    const existing = localStorage.getItem('bodyshody_gemini_key');
+    if (existing) { keyInput.value = existing; status.textContent = 'API key saved on this device.'; }
+    function saveGeminiKey() {
+      const val = keyInput.value.trim();
+      if (!val) { status.textContent = 'Please paste a valid API key.'; return; }
+      localStorage.setItem('bodyshody_gemini_key', val);
+      status.textContent = 'API key saved on this device. Head to FitGemini to start talking!';
+    }
+
+    // ---- Profile photo upload ----
+    const avatarInput = document.getElementById('avatarFileInput');
+    const avatarPreview = document.getElementById('profileAvatarPreview');
+    const sidebarAvatar = document.getElementById('sidebarAvatar');
+    const savedAvatar = localStorage.getItem('bodyshody_avatar');
+    if (savedAvatar) {
+      avatarPreview.src = savedAvatar;
+      if (sidebarAvatar) sidebarAvatar.src = savedAvatar;
+    }
+    avatarInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 4 * 1024 * 1024) {
+        alert('Please choose an image smaller than 4MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        const dataUrl = ev.target.result;
+        avatarPreview.src = dataUrl;
+        if (sidebarAvatar) sidebarAvatar.src = dataUrl;
+        localStorage.setItem('bodyshody_avatar', dataUrl);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // ---- Theme (Light / Dark / System) ----
+    const themeSelect = document.getElementById('themeSelect');
+    const savedTheme = localStorage.getItem('bodyshody_theme') || 'system';
+    themeSelect.value = savedTheme.charAt(0).toUpperCase() + savedTheme.slice(1);
+    function applyTheme(t) {
+      const isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.toggle('dark', isDark);
+    }
+    applyTheme(savedTheme);
+    themeSelect.addEventListener('change', function() {
+      const val = themeSelect.value.toLowerCase();
+      localStorage.setItem('bodyshody_theme', val);
+      applyTheme(val);
+    });
+  </script>
+
+</body>
+</html>

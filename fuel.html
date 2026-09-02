@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      var t = localStorage.getItem('bodyshody_theme') || 'system';
+      var isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BodyShody - Fuel (Meals)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/gemini-client.js"></script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F4F6F9;
+    }
+      /* ===== Dark theme overrides ===== */
+    html.dark body { background-color: #0B1120 !important; color: #E2E8F0; }
+    html.dark .bg-white { background-color: #161F2E !important; }
+    html.dark .bg-slate-50 { background-color: #1E293B !important; }
+    html.dark .bg-slate-50\/60 { background-color: rgba(30,41,59,0.6) !important; }
+    html.dark .bg-slate-50\/70 { background-color: rgba(30,41,59,0.7) !important; }
+    html.dark .bg-slate-50\/80 { background-color: rgba(30,41,59,0.8) !important; }
+    html.dark .bg-slate-100 { background-color: #273449 !important; }
+    html.dark .bg-slate-200 { background-color: #334155 !important; }
+    html.dark .border-slate-100 { border-color: #24314A !important; }
+    html.dark .border-slate-200 { border-color: #334155 !important; }
+    html.dark .text-slate-900 { color: #F1F5F9 !important; }
+    html.dark .text-slate-800 { color: #E2E8F0 !important; }
+    html.dark .text-slate-700 { color: #CBD5E1 !important; }
+    html.dark .text-slate-600 { color: #A8B6C9 !important; }
+    html.dark .text-slate-500 { color: #94A3B8 !important; }
+    html.dark .text-slate-400 { color: #64748B !important; }
+    html.dark .text-slate-300 { color: #475569 !important; }
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #24314A !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #1E293B !important; color: #E2E8F0 !important; border-color: #334155 !important; }
+    html.dark ::placeholder { color: #64748B !important; }
+    html.dark .shadow-sm, html.dark .shadow-md, html.dark .shadow-lg { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+</style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen p-4 lg:p-6">
+
+  <div class="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-6">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-sm border border-slate-100 shrink-0">
+      <div class="space-y-8">
+        
+        <!-- Brand Logo -->
+        <a href="overview.html" class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-slate-200 bg-white overflow-hidden">
+            <img src="assets/bodyshody-logo.png" alt="BodyShody logo" class="w-full h-full object-contain p-0.5">
+          </div>
+          <span class="text-2xl font-extrabold text-slate-900 tracking-tight">BodyShody</span>
+        </a>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-2">
+          <!-- Overview -->
+          <a href="overview.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Overview
+          </a>
+
+          <!-- Fuel (Meals) - ACTIVE -->
+          <a href="fuel.html" class="flex items-center gap-3.5 px-4 py-3 bg-[#FFF2E9] text-[#FF6B2C] font-bold rounded-2xl transition text-sm">
+            <svg class="w-5 h-5 text-[#FF6B2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+            </svg>
+            Fuel (Meals)
+          </a>
+
+          <!-- Move (Workouts) -->
+          <a href="move.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Move (Workouts)
+          </a>
+
+          <!-- FitGemini -->
+          <a href="fitgemini.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+            FitGemini
+          </a>
+
+          <!-- Progress -->
+          <a href="progress.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+            Progress
+          </a>
+
+          <!-- Insights -->
+          <a href="insights.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-4a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+            Insights
+          </a>
+
+          <!-- Goals -->
+          <a href="goals.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Goals
+          </a>
+
+          <!-- Settings -->
+          <a href="settings.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Settings
+          </a>
+        </nav>
+      </div>
+
+      <!-- User Profile Box -->
+      <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-3">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Athlete Profile" class="w-11 h-11 rounded-full object-cover border border-slate-200">
+        <div>
+          <p class="text-xs font-bold text-slate-900">Happy to see you, Athlete!</p>
+          <p class="text-xs font-medium text-slate-500 mt-0.5">🔥 Keep crushing it!</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT AREA ================= -->
+    <main class="flex-1 flex flex-col gap-6">
+
+      <!-- Header Section -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Fuel (Meals)</h1>
+          <p class="text-sm font-medium text-slate-500 mt-0.5">Track your meals. Fuel your body.</p>
+        </div>
+
+        <!-- Date Selector -->
+        <div class="flex items-center gap-2">
+          <div class="flex items-center bg-white px-4 py-2 rounded-2xl border border-slate-200 shadow-sm text-sm font-semibold text-slate-700 gap-4">
+            <button class="text-slate-400 hover:text-slate-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <span>August 2, 2026</span>
+            <button class="text-slate-400 hover:text-slate-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <button class="bg-white p-2.5 rounded-2xl border border-slate-200 shadow-sm text-slate-600 hover:text-slate-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Top Row: Calories Consumed + Macronutrients -->
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+
+        <!-- Calories Consumed Card -->
+        <div class="xl:col-span-5 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Calories Consumed</p>
+            <div class="flex items-baseline gap-1.5 mt-2">
+              <span id="totalCalories" class="text-4xl font-extrabold text-slate-900 tracking-tight">1,842</span>
+              <span class="text-sm font-bold text-slate-500">kcal</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-400 mt-2">of <span id="calorieGoalLabel">2,200</span> kcal goal</p>
+          </div>
+
+          <!-- Circular Donut Chart -->
+          <div class="relative w-32 h-32 flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+              <!-- Background Ring -->
+              <circle cx="60" cy="60" r="48" stroke="#F1F5F9" stroke-width="12" fill="transparent" />
+              <!-- Segments -->
+              <!-- Blue -->
+              <circle cx="60" cy="60" r="48" stroke="#3B82F6" stroke-width="12" fill="transparent" stroke-dasharray="301.59" stroke-dashoffset="100" stroke-linecap="round"/>
+              <!-- Green -->
+              <circle cx="60" cy="60" r="48" stroke="#22C55E" stroke-width="12" fill="transparent" stroke-dasharray="301.59" stroke-dashoffset="180" stroke-linecap="round"/>
+              <!-- Yellow -->
+              <circle cx="60" cy="60" r="48" stroke="#F59E0B" stroke-width="12" fill="transparent" stroke-dasharray="301.59" stroke-dashoffset="240" stroke-linecap="round"/>
+            </svg>
+            <div class="absolute text-center">
+              <p id="caloriePercentLabel" class="text-xl font-extrabold text-slate-900 leading-none">84%</p>
+              <p class="text-[10px] font-semibold text-slate-400 mt-0.5">of goal</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Macronutrients Overview -->
+        <div class="xl:col-span-7 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm grid grid-cols-2 sm:grid-cols-4 gap-4 items-center">
+          
+          <!-- Protein -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span> Protein
+            </div>
+            <p class="text-xl font-extrabold text-slate-900"><span id="proteinVal">112</span> <span class="text-xs font-bold text-slate-500">g</span></p>
+            <p id="proteinPct" class="text-xs font-semibold text-slate-400">101% of goal</p>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div id="proteinBar" class="bg-blue-500 h-full rounded-full" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <!-- Carbs -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Carbs
+            </div>
+            <p class="text-xl font-extrabold text-slate-900"><span id="carbsVal">207</span> <span class="text-xs font-bold text-slate-500">g</span></p>
+            <p id="carbsPct" class="text-xs font-semibold text-slate-400">78% of goal</p>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div id="carbsBar" class="bg-emerald-500 h-full rounded-full" style="width: 78%"></div>
+            </div>
+          </div>
+
+          <!-- Fat -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Fat
+            </div>
+            <p class="text-xl font-extrabold text-slate-900"><span id="fatVal">63</span> <span class="text-xs font-bold text-slate-500">g</span></p>
+            <p id="fatPct" class="text-xs font-semibold text-slate-400">72% of goal</p>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div id="fatBar" class="bg-amber-500 h-full rounded-full" style="width: 72%"></div>
+            </div>
+          </div>
+
+          <!-- Fiber -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span> Fiber
+            </div>
+            <p class="text-xl font-extrabold text-slate-900"><span id="fiberVal">18</span> <span class="text-xs font-bold text-slate-500">g</span></p>
+            <p id="fiberPct" class="text-xs font-semibold text-slate-400">60% of goal</p>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div id="fiberBar" class="bg-purple-500 h-full rounded-full" style="width: 60%"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Middle Main Grid: Meals List (Left) + Analytics Side (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Today's Meals Section (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+          
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Today's Meals</h2>
+            <button onclick="openMealModal()" class="bg-[#FF6B2C] hover:bg-[#E85A1C] text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm shadow-orange-200 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              Add Meal
+            </button>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+
+            <div id="mealsList" class="space-y-4">
+            <!-- Breakfast -->
+            <div class="flex items-center justify-between p-3.5 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 bg-amber-100/60 rounded-2xl flex items-center justify-center text-amber-500 shrink-0">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.95 16.95l.707.707M7.05 7.05l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="font-extrabold text-slate-900 text-sm">Breakfast</h3>
+                    <span class="text-xs font-semibold text-slate-400">8:30 AM</span>
+                  </div>
+                  <p class="text-xs font-medium text-slate-500 mt-0.5">Oatmeal with Berries & Nuts</p>
+                  <div class="flex items-center gap-3 mt-1 text-[11px] font-bold text-slate-500">
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> P 15g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> C 56g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> F 12g</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <span class="text-base font-extrabold text-slate-900">420 <span class="text-xs font-bold text-slate-500">kcal</span></span>
+                <img src="https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&q=80&w=150" alt="Breakfast" class="w-14 h-14 rounded-2xl object-cover shadow-sm">
+                <button class="text-slate-300 hover:text-slate-600">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="flex items-center justify-between p-3.5 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 bg-amber-100/60 rounded-2xl flex items-center justify-center text-amber-500 shrink-0">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.95 16.95l.707.707M7.05 7.05l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="font-extrabold text-slate-900 text-sm">Lunch</h3>
+                    <span class="text-xs font-semibold text-slate-400">1:15 PM</span>
+                  </div>
+                  <p class="text-xs font-medium text-slate-500 mt-0.5">Grilled Chicken, Brown Rice, Broccoli</p>
+                  <div class="flex items-center gap-3 mt-1 text-[11px] font-bold text-slate-500">
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> P 40g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> C 68g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> F 18g</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <span class="text-base font-extrabold text-slate-900">620 <span class="text-xs font-bold text-slate-500">kcal</span></span>
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=150" alt="Lunch" class="w-14 h-14 rounded-2xl object-cover shadow-sm">
+                <button class="text-slate-300 hover:text-slate-600">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dinner -->
+            <div class="flex items-center justify-between p-3.5 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 bg-indigo-100/60 rounded-2xl flex items-center justify-center text-indigo-500 shrink-0">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="font-extrabold text-slate-900 text-sm">Dinner</h3>
+                    <span class="text-xs font-semibold text-slate-400">7:00 PM</span>
+                  </div>
+                  <p class="text-xs font-medium text-slate-500 mt-0.5">Salmon, Quinoa, Mixed Veggies</p>
+                  <div class="flex items-center gap-3 mt-1 text-[11px] font-bold text-slate-500">
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> P 35g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> C 45g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> F 21g</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <span class="text-base font-extrabold text-slate-900">560 <span class="text-xs font-bold text-slate-500">kcal</span></span>
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=150" alt="Dinner" class="w-14 h-14 rounded-2xl object-cover shadow-sm">
+                <button class="text-slate-300 hover:text-slate-600">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Snacks -->
+            <div class="flex items-center justify-between p-3.5 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 bg-rose-100/60 rounded-2xl flex items-center justify-center text-rose-500 shrink-0">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="font-extrabold text-slate-900 text-sm">Snacks</h3>
+                    <span class="text-xs font-semibold text-slate-400">10:00 AM</span>
+                  </div>
+                  <p class="text-xs font-medium text-slate-500 mt-0.5">Greek Yogurt with Honey</p>
+                  <div class="flex items-center gap-3 mt-1 text-[11px] font-bold text-slate-500">
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> P 22g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> C 18g</span>
+                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> F 6g</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <span class="text-base font-extrabold text-slate-900">242 <span class="text-xs font-bold text-slate-500">kcal</span></span>
+                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=150" alt="Snacks" class="w-14 h-14 rounded-2xl object-cover shadow-sm">
+                <button class="text-slate-300 hover:text-slate-600">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            </div>
+
+            <!-- AI Tip Box Banner -->
+            <div class="bg-[#FFF6ED] rounded-2xl p-3 px-4 flex items-center justify-between border border-[#FFE3D1]">
+              <div class="flex items-center gap-2.5">
+                <span class="text-slate-400">📋</span>
+                <p class="text-xs font-semibold text-slate-700">Tip: Ask <a href="fitgemini.html" class="underline text-[#FF6B2C]">FitGemini</a> for a nutrition analysis of your meal.</p>
+              </div>
+              <button onclick="openMealModal()" class="bg-[#FF6B2C] hover:bg-[#E85A1C] text-white px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Add Meal
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Analytics Section (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          
+          <!-- Meal Distribution -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+            <h3 class="text-base font-extrabold text-slate-900">Meal Distribution</h3>
+            
+            <div class="flex items-center justify-between gap-4">
+              <!-- Multi-color Donut Chart -->
+              <div class="relative w-36 h-36 flex items-center justify-center shrink-0">
+                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="42" stroke="#F59E0B" stroke-width="14" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="197.9" />
+                  <circle cx="60" cy="60" r="42" stroke="#22C55E" stroke-width="14" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="174" class="origin-center rotate-[90deg]" />
+                  <circle cx="60" cy="60" r="42" stroke="#3B82F6" stroke-width="14" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="184" class="origin-center rotate-[212deg]" />
+                  <circle cx="60" cy="60" r="42" stroke="#F43F5E" stroke-width="14" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="234" class="origin-center rotate-[320deg]" />
+                </svg>
+              </div>
+
+              <!-- Legend List -->
+              <div class="space-y-2.5 flex-1">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="flex items-center gap-2 font-bold text-slate-700">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Breakfast
+                  </span>
+                  <span id="distBreakfast" class="font-extrabold text-slate-900">25% <span class="font-normal text-slate-400">(460 kcal)</span></span>
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                  <span class="flex items-center gap-2 font-bold text-slate-700">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Lunch
+                  </span>
+                  <span id="distLunch" class="font-extrabold text-slate-900">34% <span class="font-normal text-slate-400">(620 kcal)</span></span>
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                  <span class="flex items-center gap-2 font-bold text-slate-700">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> Dinner
+                  </span>
+                  <span id="distDinner" class="font-extrabold text-slate-900">30% <span class="font-normal text-slate-400">(560 kcal)</span></span>
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                  <span class="flex items-center gap-2 font-bold text-slate-700">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Snacks
+                  </span>
+                  <span id="distSnacks" class="font-extrabold text-slate-900">11% <span class="font-normal text-slate-400">(242 kcal)</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nutrient Balance -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+            <h3 class="text-base font-extrabold text-slate-900">Nutrient Balance</h3>
+
+            <div class="space-y-3.5">
+              <!-- Protein -->
+              <div class="space-y-1">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-600">
+                  <span>Protein</span>
+                  <span id="nbProtein" class="flex items-center gap-1 font-extrabold text-slate-900">
+                    112 / 110 g
+                    <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  </span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div id="nbProteinBar" class="bg-blue-500 h-full rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <!-- Carbs -->
+              <div class="space-y-1">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-600">
+                  <span>Carbs</span>
+                  <span id="nbCarbs" class="font-extrabold text-slate-900">207 / 265 g</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div id="nbCarbsBar" class="bg-emerald-500 h-full rounded-full" style="width: 78%"></div>
+                </div>
+              </div>
+
+              <!-- Fat -->
+              <div class="space-y-1">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-600">
+                  <span>Fat</span>
+                  <span id="nbFat" class="font-extrabold text-slate-900">63 / 88 g</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div id="nbFatBar" class="bg-amber-500 h-full rounded-full" style="width: 72%"></div>
+                </div>
+              </div>
+
+              <!-- Fiber -->
+              <div class="space-y-1">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-600">
+                  <span>Fiber</span>
+                  <span id="nbFiber" class="font-extrabold text-slate-900">18 / 30 g</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div id="nbFiberBar" class="bg-purple-500 h-full rounded-full" style="width: 60%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Water Intake Card -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-extrabold text-slate-900">Water Intake</h3>
+              <button onclick="addWater(1)" class="w-7 h-7 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-700 font-bold transition">+</button>
+            </div>
+
+            <p class="text-xs font-semibold text-slate-500">💧 <span id="waterCount" class="font-extrabold text-slate-900">6</span> / <span id="waterGoal">8</span> glasses</p>
+
+            <div id="waterGlasses" class="flex items-center gap-2 flex-wrap"></div>
+            <button onclick="addWater(-1)" class="text-[11px] font-bold text-slate-400 hover:text-slate-600">− remove a glass</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Banner: Encouragement -->
+      <div class="bg-[#ECF8F0] border border-[#D2F0DA] rounded-3xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-md shadow-emerald-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-slate-900 text-sm">You're doing great!</h4>
+            <p class="text-xs font-semibold text-slate-600 mt-0.5">You're 358 kcal under your daily goal. Keep it up!</p>
+          </div>
+        </div>
+
+        <a href="insights.html" class="bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition">
+          View Insights
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ================= ADD MEAL MODAL ================= -->
+  <div id="mealModalBackdrop" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-md p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-extrabold text-slate-900">Add Meal</h3>
+        <button onclick="closeMealModal()" class="text-slate-400 hover:text-slate-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Meal Type</label>
+          <select id="mealType" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snacks">Snacks</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Meal Name</label>
+          <input id="mealName" type="text" placeholder="e.g. Paneer Tikka Wrap" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Time</label>
+            <input id="mealTime" type="text" placeholder="e.g. 1:30 PM" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Calories (kcal)</label>
+            <input id="mealCalories" type="number" min="0" placeholder="450" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Protein (g)</label>
+            <input id="mealProtein" type="number" min="0" placeholder="20" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Carbs (g)</label>
+            <input id="mealCarbs" type="number" min="0" placeholder="40" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Fat (g)</label>
+            <input id="mealFat" type="number" min="0" placeholder="15" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+          </div>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Fiber (g) <span class="normal-case font-medium text-slate-300">optional</span></label>
+          <input id="mealFiber" type="number" min="0" placeholder="4" class="w-full bg-slate-50/80 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Photo <span class="normal-case font-medium text-slate-300">optional</span></label>
+          <input id="mealPhotoInput" type="file" accept="image/*" class="w-full text-[11px] font-semibold text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:bg-orange-50 file:text-[#FF6B2C] file:font-bold file:text-xs">
+          <img id="mealPhotoPreview" class="hidden mt-2 w-16 h-16 rounded-xl object-cover">
+          <button id="analyzeBtn" onclick="analyzeMealPhoto()" class="hidden mt-3 w-full bg-gradient-to-r from-[#4285F4] via-[#EA4335] to-[#34A853] text-white font-bold py-2.5 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z"/></svg>
+            Analyze Photo with FitGemini
+          </button>
+          <p id="analyzeStatus" class="text-[11px] font-semibold text-slate-400 mt-1.5"></p>
+        </div>
+      </div>
+
+      <button onclick="submitMeal()" class="w-full bg-[#FF6B2C] hover:bg-[#E85A1C] text-white font-bold py-3 rounded-2xl text-xs shadow-md shadow-orange-200 transition">Add to Today's Plan</button>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const MEAL_ICONS = {
+    Breakfast: { bg: 'bg-amber-100/60', color: 'text-amber-500', emoji: '☀️' },
+    Lunch: { bg: 'bg-emerald-100/60', color: 'text-emerald-500', emoji: '🔆' },
+    Dinner: { bg: 'bg-indigo-100/60', color: 'text-indigo-500', emoji: '🌙' },
+    Snacks: { bg: 'bg-rose-100/60', color: 'text-rose-500', emoji: '🍎' }
+  };
+  const GOALS = { calories: 2200, protein: 110, carbs: 265, fat: 88, fiber: 30 };
+
+  const DEFAULT_MEALS = [
+    { id: 'm1', type: 'Breakfast', name: 'Oatmeal with Berries & Nuts', time: '8:30 AM', calories: 420, protein: 15, carbs: 56, fat: 12, fiber: 6, photo: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&q=80&w=150' },
+    { id: 'm2', type: 'Lunch', name: 'Grilled Chicken, Brown Rice, Broccoli', time: '1:15 PM', calories: 620, protein: 40, carbs: 68, fat: 18, fiber: 5, photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=150' },
+    { id: 'm3', type: 'Dinner', name: 'Salmon, Quinoa, Mixed Veggies', time: '7:00 PM', calories: 560, protein: 35, carbs: 45, fat: 21, fiber: 4, photo: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=150' },
+    { id: 'm4', type: 'Snacks', name: 'Greek Yogurt with Honey', time: '10:00 AM', calories: 242, protein: 22, carbs: 18, fat: 6, fiber: 3, photo: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=150' }
+  ];
+
+  function loadMeals() {
+    try {
+      const stored = localStorage.getItem('bodyshody_meals');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
+    return DEFAULT_MEALS.slice();
+  }
+  function saveMeals(meals) { localStorage.setItem('bodyshody_meals', JSON.stringify(meals)); }
+
+  function loadWater() {
+    const stored = localStorage.getItem('bodyshody_water');
+    return stored !== null ? parseInt(stored, 10) : 6;
+  }
+  function saveWater(v) { localStorage.setItem('bodyshody_water', String(v)); }
+
+  let meals = loadMeals();
+  let water = loadWater();
+
+  function renderMeals() {
+    const list = document.getElementById('mealsList');
+    list.innerHTML = '';
+    meals.forEach(m => {
+      const icon = MEAL_ICONS[m.type] || MEAL_ICONS.Snacks;
+      const card = document.createElement('div');
+      card.className = 'flex items-center justify-between p-3.5 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-100 transition';
+      card.innerHTML = `
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 ${icon.bg} rounded-2xl flex items-center justify-center ${icon.color} shrink-0 text-lg">${icon.emoji}</div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-extrabold text-slate-900 text-sm">${m.type}</h3>
+              <span class="text-xs font-semibold text-slate-400">${m.time || ''}</span>
+            </div>
+            <p class="text-xs font-medium text-slate-500 mt-0.5">${m.name}</p>
+            <div class="flex items-center gap-3 mt-1 text-[11px] font-bold text-slate-500">
+              <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> P ${m.protein}g</span>
+              <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> C ${m.carbs}g</span>
+              <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> F ${m.fat}g</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-base font-extrabold text-slate-900">${m.calories} <span class="text-xs font-bold text-slate-500">kcal</span></span>
+          ${m.photo ? `<img src="${m.photo}" alt="${m.type}" class="w-14 h-14 rounded-2xl object-cover shadow-sm">` : ''}
+          <button onclick="removeMeal('${m.id}')" class="text-slate-300 hover:text-rose-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>`;
+      list.appendChild(card);
+    });
+  }
+
+  function renderSummary() {
+    const totals = meals.reduce((acc, m) => {
+      acc.calories += Number(m.calories) || 0;
+      acc.protein += Number(m.protein) || 0;
+      acc.carbs += Number(m.carbs) || 0;
+      acc.fat += Number(m.fat) || 0;
+      acc.fiber += Number(m.fiber) || 0;
+      return acc;
+    }, { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 });
+
+    const pct = (val, goal) => Math.round((val / goal) * 100);
+
+    document.getElementById('totalCalories').textContent = totals.calories.toLocaleString();
+    document.getElementById('caloriePercentLabel').textContent = pct(totals.calories, GOALS.calories) + '%';
+
+    document.getElementById('proteinVal').textContent = totals.protein;
+    document.getElementById('proteinPct').textContent = pct(totals.protein, GOALS.protein) + '% of goal';
+    document.getElementById('proteinBar').style.width = Math.min(100, pct(totals.protein, GOALS.protein)) + '%';
+
+    document.getElementById('carbsVal').textContent = totals.carbs;
+    document.getElementById('carbsPct').textContent = pct(totals.carbs, GOALS.carbs) + '% of goal';
+    document.getElementById('carbsBar').style.width = Math.min(100, pct(totals.carbs, GOALS.carbs)) + '%';
+
+    document.getElementById('fatVal').textContent = totals.fat;
+    document.getElementById('fatPct').textContent = pct(totals.fat, GOALS.fat) + '% of goal';
+    document.getElementById('fatBar').style.width = Math.min(100, pct(totals.fat, GOALS.fat)) + '%';
+
+    document.getElementById('fiberVal').textContent = totals.fiber;
+    document.getElementById('fiberPct').textContent = pct(totals.fiber, GOALS.fiber) + '% of goal';
+    document.getElementById('fiberBar').style.width = Math.min(100, pct(totals.fiber, GOALS.fiber)) + '%';
+
+    document.getElementById('nbProtein').innerHTML = `${totals.protein} / ${GOALS.protein} g <svg class="w-4 h-4 text-emerald-500 inline" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>`;
+    document.getElementById('nbProteinBar').style.width = Math.min(100, pct(totals.protein, GOALS.protein)) + '%';
+    document.getElementById('nbCarbs').textContent = `${totals.carbs} / ${GOALS.carbs} g`;
+    document.getElementById('nbCarbsBar').style.width = Math.min(100, pct(totals.carbs, GOALS.carbs)) + '%';
+    document.getElementById('nbFat').textContent = `${totals.fat} / ${GOALS.fat} g`;
+    document.getElementById('nbFatBar').style.width = Math.min(100, pct(totals.fat, GOALS.fat)) + '%';
+    document.getElementById('nbFiber').textContent = `${totals.fiber} / ${GOALS.fiber} g`;
+    document.getElementById('nbFiberBar').style.width = Math.min(100, pct(totals.fiber, GOALS.fiber)) + '%';
+
+    // Meal distribution
+    const byType = { Breakfast: 0, Lunch: 0, Dinner: 0, Snacks: 0 };
+    meals.forEach(m => { byType[m.type] = (byType[m.type] || 0) + (Number(m.calories) || 0); });
+    const distTotal = totals.calories || 1;
+    document.getElementById('distBreakfast').innerHTML = `${Math.round(byType.Breakfast/distTotal*100)}% <span class="font-normal text-slate-400">(${byType.Breakfast} kcal)</span>`;
+    document.getElementById('distLunch').innerHTML = `${Math.round(byType.Lunch/distTotal*100)}% <span class="font-normal text-slate-400">(${byType.Lunch} kcal)</span>`;
+    document.getElementById('distDinner').innerHTML = `${Math.round(byType.Dinner/distTotal*100)}% <span class="font-normal text-slate-400">(${byType.Dinner} kcal)</span>`;
+    document.getElementById('distSnacks').innerHTML = `${Math.round(byType.Snacks/distTotal*100)}% <span class="font-normal text-slate-400">(${byType.Snacks} kcal)</span>`;
+  }
+
+  function renderWater() {
+    const goal = 8;
+    document.getElementById('waterCount').textContent = water;
+    document.getElementById('waterGoal').textContent = goal;
+    const wrap = document.getElementById('waterGlasses');
+    wrap.innerHTML = '';
+    const totalShown = Math.max(goal, water);
+    for (let i = 0; i < totalShown; i++) {
+      const glass = document.createElement('div');
+      glass.className = i < water
+        ? 'w-7 h-9 bg-gradient-to-b from-blue-300 to-blue-500 rounded-b-lg rounded-t-sm shadow-inner'
+        : 'w-7 h-9 border-2 border-slate-200 rounded-b-lg rounded-t-sm';
+      wrap.appendChild(glass);
+    }
+  }
+
+  window.addWater = function(delta) {
+    water = Math.max(0, water + delta);
+    saveWater(water);
+    renderWater();
+  };
+
+  window.removeMeal = function(id) {
+    meals = meals.filter(m => m.id !== id);
+    saveMeals(meals);
+    renderMeals();
+    renderSummary();
+  };
+
+  window.openMealModal = function() {
+    document.getElementById('mealModalBackdrop').classList.remove('hidden');
+    document.getElementById('mealModalBackdrop').classList.add('flex');
+  };
+  window.closeMealModal = function() {
+    document.getElementById('mealModalBackdrop').classList.add('hidden');
+    document.getElementById('mealModalBackdrop').classList.remove('flex');
+    ['mealName','mealTime','mealCalories','mealProtein','mealCarbs','mealFat','mealFiber'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('mealPhotoInput').value = '';
+    document.getElementById('mealPhotoPreview').classList.add('hidden');
+    document.getElementById('analyzeBtn').classList.add('hidden');
+    document.getElementById('analyzeStatus').textContent = '';
+    pendingPhoto = null;
+  };
+
+  let pendingPhoto = null;
+  document.getElementById('mealPhotoInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      pendingPhoto = ev.target.result;
+      const preview = document.getElementById('mealPhotoPreview');
+      preview.src = pendingPhoto;
+      preview.classList.remove('hidden');
+      document.getElementById('analyzeBtn').classList.remove('hidden');
+      document.getElementById('analyzeStatus').textContent = '';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  window.analyzeMealPhoto = async function() {
+    const statusEl = document.getElementById('analyzeStatus');
+    const btn = document.getElementById('analyzeBtn');
+
+    if (!pendingPhoto) {
+      statusEl.className = 'text-[11px] font-semibold text-rose-500 mt-1.5';
+      statusEl.textContent = 'Upload a photo first.';
+      return;
+    }
+
+    const match = pendingPhoto.match(/^data:(image\/[a-zA-Z]+);base64,(.+)$/);
+    if (!match) {
+      statusEl.className = 'text-[11px] font-semibold text-rose-500 mt-1.5';
+      statusEl.textContent = "Couldn't read that image file. Try a different photo.";
+      return;
+    }
+    const mimeType = match[1];
+    const base64Data = match[2];
+
+    btn.disabled = true;
+    btn.classList.add('opacity-60');
+    statusEl.className = 'text-[11px] font-semibold text-slate-400 mt-1.5';
+    statusEl.textContent = 'Analyzing photo…';
+
+    const prompt = `You are a nutrition analyzer for a fitness app. Look at this food photo and estimate its nutrition. Respond with ONLY a raw JSON object, no markdown, no code fences, no extra text, matching exactly this schema:
+{"name":"short dish name","type":"Breakfast or Lunch or Dinner or Snacks","calories":number,"protein":number,"carbs":number,"fat":number,"fiber":number}
+Calories in kcal, protein/carbs/fat/fiber in grams, all as plain numbers (no units, no text). Pick "type" based on what the food looks like it's typically eaten for; default to "Snacks" if unclear.`;
+
+    try {
+      const data = await window.BodyShodyGemini.callGemini({
+        contents: [{
+          role: 'user',
+          parts: [
+            { text: prompt },
+            { inline_data: { mime_type: mimeType, data: base64Data } }
+          ]
+        }],
+        generationConfig: { temperature: 0.2, maxOutputTokens: 300 }
+      });
+
+      let raw = data?.candidates?.[0]?.content?.parts?.map(p => p.text).join('').trim() || '';
+      raw = raw.replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```\s*$/, '').trim();
+
+      let parsed;
+      try {
+        parsed = JSON.parse(raw);
+      } catch (parseErr) {
+        throw new Error('Could not understand the analysis response. Try a clearer photo.');
+      }
+
+      if (parsed.name) document.getElementById('mealName').value = parsed.name;
+      if (parsed.type && ['Breakfast','Lunch','Dinner','Snacks'].includes(parsed.type)) document.getElementById('mealType').value = parsed.type;
+      if (parsed.calories != null) document.getElementById('mealCalories').value = Math.round(parsed.calories);
+      if (parsed.protein != null) document.getElementById('mealProtein').value = Math.round(parsed.protein);
+      if (parsed.carbs != null) document.getElementById('mealCarbs').value = Math.round(parsed.carbs);
+      if (parsed.fat != null) document.getElementById('mealFat').value = Math.round(parsed.fat);
+      if (parsed.fiber != null) document.getElementById('mealFiber').value = Math.round(parsed.fiber);
+
+      statusEl.className = 'text-[11px] font-semibold text-emerald-600 mt-1.5';
+      statusEl.textContent = 'Analyzed! Review the fields below and adjust if needed, then add the meal.';
+    } catch (err) {
+      console.error(err);
+      statusEl.className = 'text-[11px] font-semibold text-rose-500 mt-1.5';
+      statusEl.textContent = 'Analysis failed: ' + err.message;
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('opacity-60');
+    }
+  };
+
+  window.submitMeal = function() {
+    const name = document.getElementById('mealName').value.trim();
+    const calories = parseFloat(document.getElementById('mealCalories').value) || 0;
+    if (!name || calories <= 0) {
+      alert('Please add at least a meal name and calorie amount.');
+      return;
+    }
+    const meal = {
+      id: 'm' + Date.now(),
+      type: document.getElementById('mealType').value,
+      name: name,
+      time: document.getElementById('mealTime').value.trim() || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      calories: calories,
+      protein: parseFloat(document.getElementById('mealProtein').value) || 0,
+      carbs: parseFloat(document.getElementById('mealCarbs').value) || 0,
+      fat: parseFloat(document.getElementById('mealFat').value) || 0,
+      fiber: parseFloat(document.getElementById('mealFiber').value) || 0,
+      photo: pendingPhoto
+    };
+    meals.push(meal);
+    saveMeals(meals);
+    renderMeals();
+    renderSummary();
+    closeMealModal();
+  };
+
+  renderMeals();
+  renderSummary();
+  renderWater();
+
+  // Auto-open the Add Meal modal if navigated here with ?openMeal=1 (e.g. from Overview)
+  if (new URLSearchParams(window.location.search).get('openMeal') === '1') {
+    openMealModal();
+  }
+})();
+</script>
+
+
+<script>
+  (function(){
+    var saved = localStorage.getItem('bodyshody_avatar');
+    if (saved) {
+      var img = document.querySelector('aside img[alt="Athlete Profile"]');
+      if (img) img.src = saved;
+    }
+  })();
+</script>
+</body>
+</html>

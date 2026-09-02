@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      var t = localStorage.getItem('bodyshody_theme') || 'system';
+      var isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BodyShody - Sign In</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* ===== Dark theme overrides ===== */
+    html.dark body { background-color: #0B1120 !important; color: #E2E8F0; }
+    html.dark .bg-white { background-color: #161F2E !important; }
+    html.dark .bg-slate-50 { background-color: #1E293B !important; }
+    html.dark .bg-slate-50\/60 { background-color: rgba(30,41,59,0.6) !important; }
+    html.dark .bg-slate-50\/70 { background-color: rgba(30,41,59,0.7) !important; }
+    html.dark .bg-slate-50\/80 { background-color: rgba(30,41,59,0.8) !important; }
+    html.dark .bg-slate-100 { background-color: #273449 !important; }
+    html.dark .bg-slate-200 { background-color: #334155 !important; }
+    html.dark .border-slate-100 { border-color: #24314A !important; }
+    html.dark .border-slate-200 { border-color: #334155 !important; }
+    html.dark .text-slate-900 { color: #F1F5F9 !important; }
+    html.dark .text-slate-800 { color: #E2E8F0 !important; }
+    html.dark .text-slate-700 { color: #CBD5E1 !important; }
+    html.dark .text-slate-600 { color: #A8B6C9 !important; }
+    html.dark .text-slate-500 { color: #94A3B8 !important; }
+    html.dark .text-slate-400 { color: #64748B !important; }
+    html.dark .text-slate-300 { color: #475569 !important; }
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #24314A !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #1E293B !important; color: #E2E8F0 !important; border-color: #334155 !important; }
+    html.dark ::placeholder { color: #64748B !important; }
+    html.dark .shadow-sm, html.dark .shadow-md, html.dark .shadow-lg { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+</style>
+</head>
+<body class="bg-gray-900 text-gray-800 antialiased min-h-screen flex items-center justify-center relative overflow-x-hidden">
+
+    <!-- Background Image Container -->
+    <!-- Background Video Container -->
+    <!-- Background Image Container -->
+<div class="fixed inset-0 z-0">
+    <img 
+        src="assets/fit.png" 
+        alt="Runner on salt flats" 
+        class="w-full h-full object-cover object-center"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/5"></div>
+</div>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 w-full max-w-7xl min-h-screen px-6 py-12 flex flex-col lg:flex-row items-center justify-between gap-12">
+        
+        <!-- Left Side: Hero Text (positioned in the open sky, clear of the runner) -->
+        <div class="flex-1 text-slate-900 max-w-xl pl-4 lg:pl-12 pt-2 lg:pt-6 lg:self-start">
+            <p class="text-lg md:text-xl font-semibold text-slate-800 mb-1" style="text-shadow: 0 2px 16px rgba(255,255,255,0.65);">
+                When your legs get tired,
+            </p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-3" style="text-shadow: 0 2px 20px rgba(255,255,255,0.65);">
+                <span class="text-slate-900">Run with your</span><br/>
+                <span style="background:linear-gradient(90deg,#6366F1,#8B5CF6,#38BDF8);-webkit-background-clip:text;background-clip:text;color:transparent;">Heart.</span>
+            </h1>
+            <p class="text-base md:text-lg font-semibold text-slate-800" style="text-shadow: 0 2px 16px rgba(255,255,255,0.65);">
+                Build strength, burn fat, and stay consistent.<!-- Fuel your <span class="text-[#e04545]">body</span>. Move your <span class="text-[#2ca05b]">better</span>. -->
+            </p>
+        </div>
+
+        <!-- Right Side: Login Card -->
+        <div class="w-full max-w-[480px] my-auto">
+            <div class="bg-[#f2f4f6]/95 backdrop-blur-md rounded-[32px] p-8 md:p-10 shadow-2xl border border-white/60">
+                
+                <!-- Brand Header -->
+                <div class="flex flex-col items-center text-center mb-8">
+                    <!-- Logo Icon -->
+                    <img src="assets/bodyshody-logo.png" alt="BodyShody logo" class="w-20 h-20 object-contain mb-3 drop-shadow-sm">
+                    <!-- Brand Title -->
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">
+                        BodyShody
+                    </h2>
+                    <!-- Subtitle -->
+                    <p class="text-base font-semibold text-slate-700 mt-2">
+                        AI-powered fitness and nutrition companion
+                    </p>
+                </div>
+
+                <!-- Form -->
+                <form class="space-y-4" onsubmit="event.preventDefault(); window.location.href='overview.html';">
+                    
+                    <!-- Email Field -->
+                    <div class="space-y-1.5">
+                        <label for="email" class="block text-sm font-semibold text-slate-700">Email</label>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-4 text-slate-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </span>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="Enter your email" 
+                                class="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-4 text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="space-y-1.5">
+                        <label for="password" class="block text-sm font-semibold text-slate-700">Password</label>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-4 text-slate-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </span>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="Enter your password" 
+                                class="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-11 text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition"
+                            />
+                            <button type="button" class="absolute right-4 text-slate-400 hover:text-slate-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Forgot Password -->
+                        <div class="text-right pt-1">
+                            <a href="#" class="text-xs text-slate-500 font-medium hover:underline">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Sign In Button -->
+                    <div class="pt-2">
+                        <button 
+                            type="submit" 
+                            class="w-full bg-[#0a65dc] hover:bg-[#0855bd] text-white font-semibold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition duration-200"
+                        >
+                            SIGN IN
+                        </button>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="flex items-center my-5">
+                        <div class="flex-1 border-t border-gray-300"></div>
+                        <span class="px-4 text-xs font-medium text-slate-500">or</span>
+                        <div class="flex-1 border-t border-gray-300"></div>
+                    </div>
+
+                    <!-- Google Sign In Button -->
+                    <button 
+                        type="button" 
+                        onclick="window.location.href='overview.html';"
+                        class="w-full bg-white hover:bg-gray-50 text-slate-700 font-semibold py-3 rounded-xl border border-gray-200 flex items-center justify-center gap-3 text-sm shadow-sm transition"
+                    >
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                        </svg>
+                        <span>Sign in with Google</span>
+                    </button>
+
+                    <!-- Footer Link -->
+                    <div class="text-center pt-4">
+                        <p class="text-xs text-slate-600 font-medium">
+                            New here? <a href="overview.html" class="text-[#0a65dc] font-bold hover:underline">Create an Account</a>
+                        </p>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

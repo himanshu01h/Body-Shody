@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      var t = localStorage.getItem('bodyshody_theme') || 'system';
+      var isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BodyShody - FitGemini</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/gemini-client.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F4F6F9; }
+    @keyframes pulseRing { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.6); opacity: 0; } }
+    .pulse-ring { animation: pulseRing 1.8s cubic-bezier(0.4,0,0.6,1) infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .float { animation: float 3s ease-in-out infinite; }
+    .bar { animation: barPulse 1s ease-in-out infinite; }
+    @keyframes barPulse { 0%,100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+      /* ===== Dark theme overrides ===== */
+    html.dark body { background-color: #0B1120 !important; color: #E2E8F0; }
+    html.dark .bg-white { background-color: #161F2E !important; }
+    html.dark .bg-slate-50 { background-color: #1E293B !important; }
+    html.dark .bg-slate-50\/60 { background-color: rgba(30,41,59,0.6) !important; }
+    html.dark .bg-slate-50\/70 { background-color: rgba(30,41,59,0.7) !important; }
+    html.dark .bg-slate-50\/80 { background-color: rgba(30,41,59,0.8) !important; }
+    html.dark .bg-slate-100 { background-color: #273449 !important; }
+    html.dark .bg-slate-200 { background-color: #334155 !important; }
+    html.dark .border-slate-100 { border-color: #24314A !important; }
+    html.dark .border-slate-200 { border-color: #334155 !important; }
+    html.dark .text-slate-900 { color: #F1F5F9 !important; }
+    html.dark .text-slate-800 { color: #E2E8F0 !important; }
+    html.dark .text-slate-700 { color: #CBD5E1 !important; }
+    html.dark .text-slate-600 { color: #A8B6C9 !important; }
+    html.dark .text-slate-500 { color: #94A3B8 !important; }
+    html.dark .text-slate-400 { color: #64748B !important; }
+    html.dark .text-slate-300 { color: #475569 !important; }
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #24314A !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #1E293B !important; color: #E2E8F0 !important; border-color: #334155 !important; }
+    html.dark ::placeholder { color: #64748B !important; }
+    html.dark .shadow-sm, html.dark .shadow-md, html.dark .shadow-lg { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+</style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen p-4 lg:p-6">
+
+  <div class="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-6">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-sm border border-slate-100 shrink-0">
+      <div class="space-y-8">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-slate-200 bg-white overflow-hidden">
+            <img src="assets/bodyshody-logo.png" alt="BodyShody logo" class="w-full h-full object-contain p-0.5">
+          </div>
+          <span class="text-2xl font-extrabold text-slate-900 tracking-tight">BodyShody</span>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="overview.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Overview
+          </a>
+          <a href="fuel.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+            Fuel (Meals)
+          </a>
+          <a href="move.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Move (Workouts)
+          </a>
+          <a href="fitgemini.html" class="flex items-center gap-3.5 px-4 py-3 bg-[#FFF2E9] text-[#FF6B2C] font-bold rounded-2xl transition text-sm">
+            <svg class="w-5 h-5 text-[#FF6B2C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 15l.9 2.6L22 18l-2.1.9-.9 2.6-.9-2.6L16 18l2.1-.4z"/>
+            </svg>
+            FitGemini
+          </a>
+          <a href="progress.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            Progress
+          </a>
+          <a href="insights.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-4a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            Insights
+          </a>
+          <a href="goals.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Goals
+          </a>
+          <a href="settings.html" class="flex items-center gap-3.5 px-4 py-3 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-2xl font-semibold transition text-sm">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Settings
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-3">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Athlete Profile" class="w-11 h-11 rounded-full object-cover border border-slate-200">
+        <div>
+          <p class="text-xs font-bold text-slate-900">Stay strong! 💪</p>
+          <p class="text-xs font-medium text-slate-400 mt-0.5">You've got this.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT AREA ================= -->
+    <main class="flex-1 flex flex-col gap-6">
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">FitGemini</h1>
+          <p class="text-sm font-medium text-slate-500 mt-0.5">Your AI fitness companion. Personalized insights. Smarter results.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="flex items-center bg-white px-4 py-2 rounded-2xl border border-slate-200 shadow-sm text-sm font-semibold text-slate-700 gap-4">
+            <button class="text-slate-400 hover:text-slate-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
+            <span>August 2, 2026</span>
+            <button class="text-slate-400 hover:text-slate-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden min-h-[70vh] flex flex-col">
+
+        <!-- Decorative faint background icons -->
+        <div class="absolute inset-0 opacity-[0.04] pointer-events-none select-none flex items-center justify-around text-slate-900">
+          <svg class="w-24 h-24 rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646"/></svg>
+          <svg class="w-20 h-20 -rotate-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+
+        <!-- ===== SCREEN 1: LANDING ===== -->
+        <section id="landingScreen" class="flex-1 flex flex-col items-center justify-center text-center px-6 py-16 relative z-10">
+          <div class="float">
+            <div class="w-28 h-28 rounded-full flex items-center justify-center relative" style="background:conic-gradient(from 90deg,#4285F4,#EA4335,#FBBC05,#34A853,#4285F4);">
+              <div class="w-[92px] h-[92px] rounded-full bg-white flex items-center justify-center">
+                <svg class="w-11 h-11" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z" fill="url(#g1)"/>
+                  <defs><linearGradient id="g1" x1="5" y1="2" x2="19" y2="16"><stop stop-color="#4285F4"/><stop offset="0.33" stop-color="#EA4335"/><stop offset="0.66" stop-color="#FBBC05"/><stop offset="1" stop-color="#34A853"/></linearGradient></defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mt-6">
+            Fit<span style="background:linear-gradient(90deg,#4285F4,#EA4335,#FBBC05,#34A853);-webkit-background-clip:text;background-clip:text;color:transparent;">Gemini</span>
+          </h2>
+          <p class="text-lg font-bold text-slate-800 mt-2">Your AI Fitness Companion</p>
+          <p class="text-sm font-medium text-slate-500 mt-3 max-w-md">Talk it out like a real call — get personalized meal plans, workout guidance, and honest coaching from your AI gym instructor and nutritionist.</p>
+
+          <button id="startBtn" class="mt-8 bg-gradient-to-r from-[#FF6B2C] to-[#F43F5E] hover:opacity-90 text-white font-bold px-10 py-4 rounded-2xl text-sm shadow-lg shadow-orange-200 transition flex items-center gap-2">
+            Start
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+
+          <div class="flex items-center gap-10 mt-10">
+            <div class="flex flex-col items-center gap-2">
+              <div class="w-11 h-11 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+              <span class="text-[11px] font-bold text-slate-500">Smart Insights</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div class="w-11 h-11 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+              <span class="text-[11px] font-bold text-slate-500">Personalized Plans</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div class="w-11 h-11 bg-purple-50 text-purple-500 rounded-full flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <span class="text-[11px] font-bold text-slate-500">Track Progress</span>
+            </div>
+          </div>
+
+          <p id="apiKeyNotice" class="hidden mt-6 text-xs font-semibold text-rose-500 max-w-sm">
+            No Gemini API key found. Add one on the <a href="settings.html" class="underline">Settings</a> page to start talking with FitGemini.
+          </p>
+          <p class="mt-6 text-[11px] font-medium text-slate-400 max-w-sm">Works best in Chrome — uses your microphone for voice recognition and speaks replies aloud, just like a real call.</p>
+        </section>
+
+        <!-- ===== SCREEN 2: CALL UI ===== -->
+        <section id="callScreen" class="hidden flex-1 flex-col items-center justify-between px-6 py-10 relative z-10">
+          <div class="flex flex-col items-center gap-3 mt-4">
+            <div class="relative w-32 h-32 flex items-center justify-center">
+              <div id="pulseRing1" class="absolute inset-0 rounded-full pulse-ring" style="background:radial-gradient(circle,rgba(255,107,44,0.35),transparent 70%);"></div>
+              <div class="w-24 h-24 rounded-full flex items-center justify-center relative z-10" style="background:conic-gradient(from 90deg,#4285F4,#EA4335,#FBBC05,#34A853,#4285F4);">
+                <div class="w-[84px] h-[84px] rounded-full bg-white flex items-center justify-center">
+                  <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z" fill="url(#g2)"/><defs><linearGradient id="g2" x1="5" y1="2" x2="19" y2="16"><stop stop-color="#4285F4"/><stop offset="0.33" stop-color="#EA4335"/><stop offset="0.66" stop-color="#FBBC05"/><stop offset="1" stop-color="#34A853"/></linearGradient></defs></svg>
+                </div>
+              </div>
+            </div>
+            <p id="callStatus" class="text-sm font-extrabold text-slate-900 mt-2">Connecting…</p>
+            <div id="voiceBars" class="hidden items-end gap-1 h-6">
+              <span class="bar w-1 h-full bg-[#FF6B2C] rounded-full" style="animation-delay:0s"></span>
+              <span class="bar w-1 h-full bg-[#FF6B2C] rounded-full" style="animation-delay:0.15s"></span>
+              <span class="bar w-1 h-full bg-[#FF6B2C] rounded-full" style="animation-delay:0.3s"></span>
+              <span class="bar w-1 h-full bg-[#FF6B2C] rounded-full" style="animation-delay:0.45s"></span>
+              <span class="bar w-1 h-full bg-[#FF6B2C] rounded-full" style="animation-delay:0.6s"></span>
+            </div>
+          </div>
+
+          <!-- Transcript -->
+          <div id="transcriptBox" class="w-full max-w-2xl flex-1 my-6 overflow-y-auto space-y-3 px-2" style="max-height: 32vh;"></div>
+
+          <!-- Text input -->
+          <form id="textForm" class="w-full max-w-2xl flex items-center gap-2 mb-4">
+            <input id="textInput" type="text" autocomplete="off" placeholder="Or type a message instead of talking…" class="flex-1 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-semibold text-slate-800 focus:outline-none focus:border-orange-400">
+            <button type="submit" class="w-11 h-11 shrink-0 rounded-full bg-[#FF6B2C] hover:bg-[#E85A1C] text-white flex items-center justify-center transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </form>
+
+          <!-- Controls -->
+          <div class="flex items-center gap-4">
+            <button id="muteBtn" class="w-14 h-14 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition">
+              <svg id="micIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
+            </button>
+            <button id="endBtn" class="w-16 h-16 rounded-full bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center shadow-lg shadow-rose-200 transition">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <p class="text-[11px] font-medium text-slate-400 mt-4">FitGemini can make mistakes. Not a substitute for professional medical advice.</p>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+<script>
+(function() {
+  const GEMINI_MODEL = 'gemini-3.6-flash';
+  const SYSTEM_PROMPT = `You are FitGemini, a warm, motivating AI gym instructor and certified nutritionist inside the BodyShody fitness app. You are speaking with the user on a live voice/text call, so:
+- Match your reply length to the question. For quick check-ins, greetings, or simple yes/no questions, keep it to 1-3 spoken-style sentences. For anything that needs real substance — a workout plan, a meal plan, a diet breakdown, form instructions, a weekly split, or "explain in detail" — give a genuinely complete, well-organized answer with all the necessary specifics (exercises, sets/reps, foods, portions, days, etc.). Do not artificially cut a real plan short.
+- Speak in plain spoken language: no markdown symbols like asterisks or hash headers, since this is read aloud by text-to-speech. You can still use short line breaks and numbered steps spoken naturally (e.g. "First... Second... Third...") for structure when giving a plan.
+- Be encouraging, direct, and practical.
+- If asked about injuries, medical conditions, or anything requiring a doctor, tell them to consult a medical professional, briefly.
+- Occasionally reference the user's stats naturally if relevant: they eat about 1,842 kcal/day (goal 2,200), protein 112g, and did a Push Day workout today (Bench Press, Incline DB Press, Shoulder Press).
+- Never say you are an AI language model; just be their coach, FitGemini.`;
+
+  const landingScreen = document.getElementById('landingScreen');
+  const callScreen = document.getElementById('callScreen');
+  const startBtn = document.getElementById('startBtn');
+  const apiKeyNotice = document.getElementById('apiKeyNotice');
+  const callStatus = document.getElementById('callStatus');
+  const transcriptBox = document.getElementById('transcriptBox');
+  const muteBtn = document.getElementById('muteBtn');
+  const micIcon = document.getElementById('micIcon');
+  const endBtn = document.getElementById('endBtn');
+  const voiceBars = document.getElementById('voiceBars');
+  const pulseRing1 = document.getElementById('pulseRing1');
+  const textForm = document.getElementById('textForm');
+  const textInput = document.getElementById('textInput');
+
+  let recognition = null;
+  let listening = false;
+  let muted = false;
+  let history = [];
+  let synth = window.speechSynthesis;
+
+  function addBubble(role, text) {
+    const wrap = document.createElement('div');
+    wrap.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+    const bubble = document.createElement('div');
+    bubble.className = role === 'user'
+      ? 'max-w-[80%] bg-[#FF6B2C] text-white text-xs font-semibold px-4 py-2.5 rounded-2xl rounded-br-sm'
+      : 'max-w-[80%] bg-slate-100 text-slate-800 text-xs font-semibold px-4 py-2.5 rounded-2xl rounded-bl-sm';
+    bubble.textContent = text;
+    wrap.appendChild(bubble);
+    transcriptBox.appendChild(wrap);
+    transcriptBox.scrollTop = transcriptBox.scrollHeight;
+  }
+
+  function setStatus(text, mode) {
+    callStatus.textContent = text;
+    if (mode === 'listening') {
+      voiceBars.classList.remove('hidden');
+      voiceBars.classList.add('flex');
+      pulseRing1.style.display = 'block';
+    } else if (mode === 'speaking') {
+      voiceBars.classList.remove('hidden');
+      voiceBars.classList.add('flex');
+      pulseRing1.style.display = 'block';
+    } else {
+      voiceBars.classList.add('hidden');
+      voiceBars.classList.remove('flex');
+      pulseRing1.style.display = 'none';
+    }
+  }
+
+  async function askGemini(userText) {
+    history.push({ role: 'user', parts: [{ text: userText }] });
+    setStatus('Thinking…', 'idle');
+    try {
+      const data = await window.BodyShodyGemini.callGemini({
+        contents: history,
+        systemInstruction: SYSTEM_PROMPT,
+        generationConfig: { temperature: 0.8, maxOutputTokens: 1024 }
+      });
+      const reply = data?.candidates?.[0]?.content?.parts?.map(p => p.text).join(' ').trim()
+        || "Sorry, I couldn't quite get that. Could you say it again?";
+      history.push({ role: 'model', parts: [{ text: reply }] });
+      addBubble('model', reply);
+      speak(reply);
+    } catch (err) {
+      console.error(err);
+      addBubble('model', "I'm having trouble connecting to Gemini: " + err.message);
+      setStatus('Connection error', 'idle');
+    }
+  }
+
+  function speak(text) {
+    if (!synth) { startListening(); return; }
+    synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.rate = 1.02;
+    utter.pitch = 1.0;
+    const voices = synth.getVoices();
+    const preferred = voices.find(v => /en-US|en-GB/.test(v.lang) && /Female|Google/i.test(v.name)) || voices.find(v => /^en/.test(v.lang));
+    if (preferred) utter.voice = preferred;
+    utter.onstart = () => setStatus('FitGemini is speaking…', 'speaking');
+    utter.onend = () => { if (!muted) startListening(); else setStatus('Muted — tap mic to resume', 'idle'); };
+    synth.speak(utter);
+  }
+
+  function initRecognition() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return null;
+    const rec = new SR();
+    rec.lang = 'en-US';
+    rec.continuous = false;
+    rec.interimResults = false;
+    rec.maxAlternatives = 1;
+    rec.onresult = (e) => {
+      const transcript = e.results[0][0].transcript;
+      addBubble('user', transcript);
+      askGemini(transcript);
+    };
+    rec.onerror = (e) => {
+      console.warn('Speech recognition error:', e.error);
+      if (e.error === 'no-speech' || e.error === 'aborted') {
+        if (!muted) startListening();
+      } else if (e.error === 'not-allowed') {
+        setStatus('Microphone access denied', 'idle');
+      }
+    };
+    rec.onend = () => { listening = false; };
+    return rec;
+  }
+
+  function startListening() {
+    if (muted) return;
+    if (!recognition) recognition = initRecognition();
+    if (!recognition) {
+      setStatus('Voice input not supported — try Chrome', 'idle');
+      return;
+    }
+    try {
+      recognition.start();
+      listening = true;
+      setStatus('Listening…', 'listening');
+    } catch (e) { /* already started */ }
+  }
+
+  function stopListening() {
+    if (recognition && listening) { recognition.stop(); listening = false; }
+  }
+
+  textForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = textInput.value.trim();
+    if (!text) return;
+    stopListening();
+    if (synth) synth.cancel();
+    addBubble('user', text);
+    textInput.value = '';
+    askGemini(text);
+  });
+
+  muteBtn.addEventListener('click', () => {
+    muted = !muted;
+    if (muted) {
+      stopListening();
+      synth.cancel();
+      micIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M9.75 6.11V4.5a2.25 2.25 0 014.31-.9M15 12v.75a3 3 0 01-4.83 2.37"/>';
+      muteBtn.classList.add('bg-rose-100', 'text-rose-500');
+      setStatus('Muted — tap mic to resume', 'idle');
+    } else {
+      micIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/>';
+      muteBtn.classList.remove('bg-rose-100', 'text-rose-500');
+      startListening();
+    }
+  });
+
+  endBtn.addEventListener('click', () => {
+    stopListening();
+    if (synth) synth.cancel();
+    history = [];
+    transcriptBox.innerHTML = '';
+    textInput.value = '';
+    callScreen.classList.add('hidden');
+    callScreen.classList.remove('flex');
+    landingScreen.classList.remove('hidden');
+    landingScreen.classList.add('flex');
+  });
+
+  startBtn.addEventListener('click', () => {
+    apiKeyNotice.classList.add('hidden');
+    landingScreen.classList.add('hidden');
+    landingScreen.classList.remove('flex');
+    callScreen.classList.remove('hidden');
+    callScreen.classList.add('flex');
+
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
+      setStatus('Voice input needs Chrome — you can still read replies below', 'idle');
+    }
+
+    const greeting = "Hey there! This is FitGemini, your AI gym instructor and nutritionist. How can I help you crush your goals today?";
+    history.push({ role: 'model', parts: [{ text: greeting }] });
+    addBubble('model', greeting);
+    speak(greeting);
+  });
+})();
+</script>
+
+
+<script>
+  (function(){
+    var saved = localStorage.getItem('bodyshody_avatar');
+    if (saved) {
+      var img = document.querySelector('aside img[alt="Athlete Profile"]');
+      if (img) img.src = saved;
+    }
+  })();
+</script>
+</body>
+</html>
